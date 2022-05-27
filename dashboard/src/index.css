@@ -13,6 +13,10 @@ a {
   color: unset;
 }
 
+img {
+  background: rgb(226, 226, 226);
+}
+
 .i {
   cursor: pointer;
 }
@@ -21,6 +25,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn {
+  cursor: pointer;
 }
 
 .grid-cc {

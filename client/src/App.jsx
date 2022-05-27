@@ -10,6 +10,7 @@ import Order from "./pages/Order/Order";
 import MyDish from "./pages/MyDish/MyDish";
 import Favourite from "./pages/Favourite/Favourite";
 import SingleFood from "./pages/SingleFood/SingleFood";
+import Checkout from "./pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/SingleFood" element={<SingleFood />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </div>
   );

@@ -8,7 +8,7 @@ import LimitChar from "../LimitChar/LimitChar";
 
 const Card = (props) => {
   return (
-    <div className="post-card">
+    <div className="card">
       <div className="img">
         <img src={props.img} alt="" />
         <div className="title">{props.name}</div>

@@ -8,8 +8,8 @@ import "./Menu.scss";
 const Menu = () => {
   return (
     <div className="menu">
-      <Link to='/additem' className="add-item">
-        <span>Add Item</span>
+      <Link to="/additemtomenu" className="add-item">
+        <span>Add Item To Menu</span>
         <IoMdAdd />
       </Link>
       <div className="card-container">
