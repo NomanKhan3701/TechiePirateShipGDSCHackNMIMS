@@ -23,7 +23,9 @@ const Navbar = () => {
   return (
     <div className="navbar flex-cc">
       <div className="logo">
-        <img src={logo} alt="blog logo" />
+        <Link to="/">
+          <img src={logo} alt="blog logo" />
+        </Link>
       </div>
       <div className="search-container">
         <input type="text" placeholder="Search food..." />
