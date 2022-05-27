@@ -14,7 +14,8 @@
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "sass": "^1.52.1",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "swiper": "^8.1.6"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

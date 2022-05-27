@@ -1,10 +1,9 @@
-import React from 'react'
-import './AddItem.scss'
+import React from "react";
+import "./AddItem.scss";
+
 
 const AddItem = () => {
-  return (
-    <div className='add-item'>AddItem</div>
-  )
-}
+  return <div className="add-item">AddItem</div>;
+};
 
-export default AddItem
+export default AddItem;
