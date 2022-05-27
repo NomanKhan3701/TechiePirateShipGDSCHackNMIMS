@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
-import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import userImg from "../../assets/p1.jpg";
 
 const Navbar = () => {
   const [loggedIn, setloggedIn] = useState(false);
@@ -11,7 +9,7 @@ const Navbar = () => {
   return (
     <div className="navbar flex-cc">
       <div className="logo">
-        <img src={logo} alt="blog logo" />
+        <img src="" alt="blog logo" />
       </div>
       <div className="search-container">
         <input type="text" placeholder="Search post..." />
@@ -22,20 +20,20 @@ const Navbar = () => {
           <Link to="/" className="link active">
             Home
           </Link>
-          <Link to="/categories" className="link">
-            Categories
+          <Link to="/menu" className="link">
+            Menu
           </Link>
-          <Link to="/about" className="link">
-            About
+          <Link to="/order" className="link">
+            Order
           </Link>
-          <Link to="/contact" className="link">
-            Contact
+          <Link to="/ingredients" className="link">
+            Ingredients
           </Link>
         </div>
         {loggedIn ? (
           <div className="right-links flex-cc">
             <Link to="/profile">
-              <img src={userImg} alt="" />
+              <img src="" alt="" />
             </Link>
           </div>
         ) : (
