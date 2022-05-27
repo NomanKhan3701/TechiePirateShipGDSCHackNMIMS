@@ -28,6 +28,7 @@ const Signup = async (req, res) => {
   }
 };
 const Login = async (req, res) => {
+  console.log(1234);
   try {
     const { error } = validateLogin(req.body);
     if (error)

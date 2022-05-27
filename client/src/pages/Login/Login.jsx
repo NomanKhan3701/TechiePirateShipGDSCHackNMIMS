@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
-    username: "",
+    MobileNumber: null,
     password: "",
   });
 
@@ -23,19 +23,20 @@ const Login = () => {
     });
   };
 
-  const submit = () => {
-    if (!(loginData.username && loginData.password)) {
+  const handleSubmit = async () => {
+    if (!(loginData.MobileNumber && loginData.password)) {
       toast.error("Fields cannot be empty.", { position: "top-center" });
     } else {
       setLoading(true);
-      axios
-        .post(``, {
-          username: loginData.username,
+      console.log("posting login data.");
+      const { data: response } = await axios.post(
+        `http://localhost:8000/api/Login/`,
+        {
+          MobileNumber: loginData.MobileNumber,
           password: loginData.password,
-        })
-        .then((response) => {
-          setLoading(false);
-        });
+        }
+      );
+      localStorage.setItem("token", res.data);
     }
   };
   return (
@@ -43,9 +44,9 @@ const Login = () => {
       <ToastContainer></ToastContainer>
       <input
         type="text"
-        name="username"
-        value={loginData.username}
-        placeholder="username"
+        name="MobileNumber"
+        value={loginData.MobileNumber}
+        placeholder="MobileNumber"
         onChange={onChange}
       ></input>
       <input
@@ -55,7 +56,13 @@ const Login = () => {
         placeholder="password"
         onChange={onChange}
       ></input>
-      <button onClick={submit}>Submit</button>
+      <button
+        onClick={() => {
+          handleSubmit();
+        }}
+      >
+        Submit
+      </button>
     </div>
   );
 };

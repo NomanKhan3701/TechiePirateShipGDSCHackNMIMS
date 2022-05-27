@@ -8,8 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 const SignUp = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
-    username: "",
-    phone: null,
+    firstname: "",
+    lastname: "",
+    MobileNumber: null,
     password: "",
     cnfrmPassword: "",
   });
@@ -26,28 +27,21 @@ const SignUp = () => {
   };
 
   const submit = () => {
-    const usernameRegex = new RegExp(/^([A-Za-z0-9]|[-._](?![-._])){8,20}$/);
     const passwordRegex = new RegExp(
       /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
     );
     const phoneRegex = new RegExp(/^[6-9]\d{9}$/gi);
     if (
       !(
-        loginData.username &&
+        loginData.firstname &&
+        loginData.lastname &&
         loginData.password &&
         loginData.cnfrmPassword &&
-        loginData.phone
+        loginData.MobileNumber
       )
     ) {
       toast.error("Fields cannot be empty.", { position: "top-center" });
-    } else if (!usernameRegex.test(loginData.username)) {
-      toast.error(
-        "Username must have between 8 and 20 characters and can contain alphanumeric characters A-Z,a-z,0-9, the special characters -._ must not be used successively and username cannot include any whitespaces",
-        {
-          position: "top-center",
-        }
-      );
-    } else if (!phoneRegex.test(loginData.phone)) {
+    } else if (!phoneRegex.test(loginData.MobileNumber)) {
       toast.error("Please enter valid 10 digit mobile number.", {
         position: "top-center",
       });
@@ -63,12 +57,15 @@ const SignUp = () => {
     } else {
       setLoading(true);
       axios
-        .post(``, {
-          username: loginData.username,
+        .post(`http://localhost:8000/api/SignUp/`, {
+          firstName: loginData.firstname,
+          lastName: loginData.lastname,
+          MobileNumber: loginData.MobileNumber,
           password: loginData.password,
         })
         .then((response) => {
           setLoading(false);
+          console.log(response);
         });
     }
   };
@@ -77,16 +74,23 @@ const SignUp = () => {
       <ToastContainer></ToastContainer>
       <input
         type="text"
-        name="username"
-        value={loginData.username}
-        placeholder="username"
+        name="firstname"
+        value={loginData.firstname}
+        placeholder="firstname"
         onChange={onChange}
       ></input>
       <input
         type="text"
-        name="phone"
-        value={loginData.phone}
-        placeholder="phone number"
+        name="lastname"
+        value={loginData.lastname}
+        placeholder="lastname"
+        onChange={onChange}
+      ></input>
+      <input
+        type="text"
+        name="MobileNumber"
+        value={loginData.MobileNumber}
+        placeholder="mobile number"
         onChange={onChange}
       ></input>
       <input
