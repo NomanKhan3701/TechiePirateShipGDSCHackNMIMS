@@ -170,6 +170,10 @@
           border: 1px solid black;
           padding: 10px 25px;
           border-radius: 5px;
+
+          &:hover {
+            background: rgb(224, 222, 222);
+          }
         }
 
         .btn {
@@ -187,6 +191,7 @@
 
         .sidebar-link {
           display: flex;
+          align-items: center;
           margin-bottom: 15px;
           cursor: pointer;
           padding: 10px 15px;

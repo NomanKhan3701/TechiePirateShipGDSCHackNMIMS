@@ -109,17 +109,7 @@ const Navbar = () => {
             >
               <IoMdCart />
               <div className="link-content">
-                <a>My Dish</a>
-              </div>
-            </NavLink>
-            <NavLink
-              to="/favourite"
-              className="sidebar-link"
-              onClick={() => setToggle(false)}
-            >
-              <AiTwotoneHeart />
-              <div className="link-content">
-                <a>Favourite</a>
+                <a>Ingredients</a>
               </div>
             </NavLink>
             <NavLink
