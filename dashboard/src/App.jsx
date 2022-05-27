@@ -9,6 +9,7 @@ import Login from "./pages/Login/Login";
 import Menu from "./pages/Menu/Menu";
 import Order from "./pages/Order/Order";
 import Signup from "./pages/Signup/Signup";
+import SingleFood from "./pages/SingleFood/SingleFood";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/additemtomenu" element={<AddItem />} />
         <Route path="/additemtospecial" element={<AddItem />} />
+        <Route path="/SingleFood" element={<SingleFood />} />
       </Routes>
     </div>
   );
