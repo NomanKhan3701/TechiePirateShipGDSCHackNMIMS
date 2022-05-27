@@ -9,7 +9,7 @@ const SignUp = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
     username: "",
-    phone: NaN,
+    phone: null,
     password: "",
     cnfrmPassword: "",
   });
@@ -26,8 +26,40 @@ const SignUp = () => {
   };
 
   const submit = () => {
-    if (!(loginData.username && loginData.password)) {
+    const usernameRegex = new RegExp(/^([A-Za-z0-9]|[-._](?![-._])){8,20}$/);
+    const passwordRegex = new RegExp(
+      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    );
+    const phoneRegex = new RegExp(/^[6-9]\d{9}$/gi);
+    if (
+      !(
+        loginData.username &&
+        loginData.password &&
+        loginData.cnfrmPassword &&
+        loginData.phone
+      )
+    ) {
       toast.error("Fields cannot be empty.", { position: "top-center" });
+    } else if (!usernameRegex.test(loginData.username)) {
+      toast.error(
+        "Username must have between 8 and 20 characters and can contain alphanumeric characters A-Z,a-z,0-9, the special characters -._ must not be used successively and username cannot include any whitespaces",
+        {
+          position: "top-center",
+        }
+      );
+    } else if (!phoneRegex.test(loginData.phone)) {
+      toast.error("Please enter valid 10 digit mobile number.", {
+        position: "top-center",
+      });
+    } else if (loginData.password !== loginData.cnfrmPassword) {
+      toast.error("Password Field Didnt Match.", { position: "top-center" });
+    } else if (!passwordRegex.test(loginData.password)) {
+      toast.error(
+        "Min 8 letter password, with at least a symbol, upper and lower case letters and a number",
+        {
+          position: "top-center",
+        }
+      );
     } else {
       setLoading(true);
       axios
