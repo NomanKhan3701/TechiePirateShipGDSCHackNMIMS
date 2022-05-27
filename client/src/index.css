@@ -5,6 +5,33 @@
 }
 
 body {
-  margin: 0;
+  padding-top: 80px;
 }
 
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+.i {
+  cursor: pointer;
+}
+
+img {
+  background: rgb(208, 204, 204);
+}
+
+.flex-cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-cc {
+  display: grid;
+  place-items: center;
+}
+
+.btn {
+  cursor: pointer;
+}
