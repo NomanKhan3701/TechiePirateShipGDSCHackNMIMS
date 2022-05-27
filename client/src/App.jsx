@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Order from "./pages/Order/Order";
 import MyDish from "./pages/MyDish/MyDish";
 import Favourite from "./pages/Favourite/Favourite";
+import SingleFood from "./pages/SingleFood/SingleFood";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/favourite" element={<Favourite />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/SingleFood" element={<SingleFood />} />
       </Routes>
     </div>
   );
