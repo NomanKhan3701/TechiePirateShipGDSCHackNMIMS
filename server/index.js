@@ -2,9 +2,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = express();
-const multer = require("multer");
 const cors = require("cors");
 const authRoutes = require("./routes/Admin");
+const client = require("./routes/client");
 // const userRoute = require('./routes/user')
 
 dotenv.config();
@@ -17,10 +17,7 @@ app.use(cors());
 /* All Routes here */
 // app.use("/api/user", userRoute);
 
-app.get("/", (req, res) => {
-  res.send("Hallaluya");
-});
-app.use("/api", authRoutes);
+app.use("/api", client);
 
 app.listen(PORT, () => {
   try {
