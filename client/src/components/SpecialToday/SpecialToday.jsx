@@ -4,7 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiOutlineShoppingCart } from "react-icons/ai";
+import { MdOutlineFavorite } from "react-icons/md";
+import { GiBuyCard } from "react-icons/gi";
 import { CgArrowsExchange } from "react-icons/cg";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import food1 from "../../assets/food1.jpg";
@@ -34,12 +36,16 @@ const SpecialToday = () => {
             <div className="title">Burger</div>
             <div className="utilities">
               <div className="btn">
-                Delete
-                <AiFillDelete />
+                Order
+                <GiBuyCard />
               </div>
               <div className="btn">
-                Change
-                <CgArrowsExchange />
+                Add To Your Dish
+                <AiOutlineShoppingCart />
+              </div>
+              <div className="btn">
+                Favourite
+                <MdOutlineFavorite />
               </div>
             </div>
           </div>
@@ -50,12 +56,16 @@ const SpecialToday = () => {
             <div className="title">Chicken Burger</div>
             <div className="utilities">
               <div className="btn">
-                Delete
-                <AiFillDelete />
+                Order
+                <GiBuyCard />
               </div>
               <div className="btn">
-                Change
-                <CgArrowsExchange />
+                Add To Your Dish
+                <AiOutlineShoppingCart />
+              </div>
+              <div className="btn">
+                Favourite
+                <MdOutlineFavorite />
               </div>
             </div>
           </div>
@@ -66,12 +76,16 @@ const SpecialToday = () => {
             <div className="title">Pastery</div>
             <div className="utilities">
               <div className="btn">
-                Delete
-                <AiFillDelete />
+                Order
+                <GiBuyCard />
               </div>
               <div className="btn">
-                Change
-                <CgArrowsExchange />
+                Add To Your Dish
+                <AiOutlineShoppingCart />
+              </div>
+              <div className="btn">
+                Favourite
+                <MdOutlineFavorite />
               </div>
             </div>
           </div>

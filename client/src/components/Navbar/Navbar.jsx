@@ -23,11 +23,14 @@ const Navbar = () => {
           <Link to="/menu" className="link">
             Menu
           </Link>
+          <Link to="/mydish" className="link">
+            My dish
+          </Link>
           <Link to="/order" className="link">
             Order
           </Link>
-          <Link to="/ingredients" className="link">
-            Ingredients
+          <Link to="/favourite" className="link">
+            Favourite
           </Link>
         </div>
         {loggedIn ? (
