@@ -8,11 +8,18 @@ import "./MyDish.scss";
 const MyDish = () => {
   return (
     <div className="my-dish">
-      <CartCard img={food1} />
-      <CartCard img={food2} />
-      <CartCard img={food3} />
-
-      <div className="btn">Checkout | $600</div>
+      <div className="card-container">
+        <CartCard img={food1} />
+        <CartCard img={food2} />
+        <CartCard img={food3} />
+        <CartCard img={food1} />
+        <CartCard img={food2} />
+        <CartCard img={food3} />
+      </div>
+      <div className="bill-container">
+          <h1>Price</h1>
+        <div className="btn">Checkout | $600</div>
+      </div>
     </div>
   );
 };

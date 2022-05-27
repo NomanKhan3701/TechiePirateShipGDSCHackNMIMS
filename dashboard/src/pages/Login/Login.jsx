@@ -47,7 +47,7 @@ const Login = () => {
           type="text"
           name="id"
           value={loginData.id}
-          placeholder="id"
+          placeholder="Id"
           onChange={onChange}
         ></input>
         <input

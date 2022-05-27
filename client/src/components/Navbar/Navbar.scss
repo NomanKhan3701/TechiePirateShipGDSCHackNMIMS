@@ -10,6 +10,11 @@
   background: white;
   //   width: 100vw;
 
+  @media screen and (max-width: 900px) {
+    padding: 20px 10px;
+    padding-left: 60px;
+  }
+
   .logo {
     img {
       width: 50px;
@@ -29,6 +34,19 @@
       outline: none;
       width: 250px;
       font-size: 16px;
+
+      @media screen and (max-width: 700px) {
+        width: 150px;
+      }
+    }
+
+    @media screen and (max-width: 800px) {
+      margin-left: 20px;
+    }
+
+    @media screen and (max-width: 620px) {
+      position: absolute;
+      right: 50px;
     }
   }
 
@@ -51,12 +69,23 @@
 
     .left-links {
       margin-right: 60px;
+      @media screen and (max-width: 1400px) {
+        margin-right: 0;
+      }
+
+      @media screen and (max-width: 1250px) {
+        display: none;
+      }
     }
 
     .right-links {
       display: flex;
       justify-content: center;
       align-items: center;
+
+      @media screen and (max-width: 620px) {
+        display: none;
+      }
 
       img {
         height: 55px;
@@ -75,6 +104,118 @@
         &:hover {
           box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
         }
+      }
+    }
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px;
+    height: 80px;
+    display: none;
+    place-items: center;
+    z-index: 50;
+
+    @media screen and (max-width: 1250px) {
+      display: grid;
+    }
+
+    .toggle-icon {
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .toggle-i {
+      font-size: 50px;
+      cursor: pointer;
+    }
+
+    .sidebar-toggle {
+      position: absolute;
+      width: 320px;
+      height: 100vh;
+      left: -320px;
+      padding: 15px 0px;
+      top: 0;
+      background: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.5s ease-out;
+      overflow: auto;
+
+      .sidebar-top {
+        display: flex;
+        padding: 0px 20px;
+
+        img {
+          height: 60px;
+          margin-left: auto;
+          background: unset;
+        }
+      }
+
+      .sidebar-links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        padding: 20px 20px;
+
+        .link {
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 20px;
+          margin-top: 20px;
+          font-size: 18px;
+          border: 1px solid black;
+          padding: 10px 25px;
+          border-radius: 5px;
+        }
+
+        .btn {
+          margin-right: auto;
+          margin-left: auto;
+          padding: 10px 25px;
+          background: rgb(40, 23, 38);
+          color: white;
+          border-radius: 5px;
+
+          &:hover {
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+          }
+        }
+
+        .sidebar-link {
+          display: flex;
+          margin-bottom: 15px;
+          cursor: pointer;
+          padding: 10px 15px;
+          font-size: 17px;
+          border-radius: 20px;
+
+          svg {
+            font-size: 24px;
+            margin-right: 20px;
+          }
+
+          a {
+            text-decoration: none;
+            color: black;
+          }
+
+          &.active {
+            background: rgb(42, 42, 93);
+            color: white;
+          }
+
+          &.active a {
+            color: white;
+          }
+        }
+      }
+
+      &.active {
+        left: 0;
       }
     }
   }

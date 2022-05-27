@@ -39,10 +39,13 @@
 
       .utilities {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
 
         .btn {
-          margin-right: 10px;
-          margin-left: 10px;
+          margin-right: 20px;
+          margin-left: 20px;
           color: white;
           display: flex;
           justify-content: center;
@@ -51,6 +54,7 @@
           border: 2px solid white;
           padding: 10px 40px;
           border-radius: 20px;
+          margin-bottom: 20px;
           cursor: pointer;
 
           &:hover {

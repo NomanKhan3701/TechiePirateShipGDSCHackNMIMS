@@ -1,21 +1,44 @@
 .my-dish {
-  padding: 30px 80px;
+  padding: 20px 80px;
+  padding-bottom: 40px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
 
-  .btn {
-    background: black;
-    font-size: 19px;
-    margin-top: 30px;
-    color: white;
-    padding: 15px 60px;
-    border-radius: 20px;
-    letter-spacing: 2px;
-    width: max-content;
+  @media screen and (max-width: 700px) {
+    padding: 20px 20px;
+  }
 
-    &:hover {
-      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  .card-container {
+    width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .bill-container {
+    width: 400px;
+    margin-top: 20px;
+    height: max-content;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 10px 30px;
+    border-radius: 10px;
+
+    .btn {
+      background: black;
+      font-size: 19px;
+      margin-top: 30px;
+      color: white;
+      padding: 15px 60px;
+      border-radius: 20px;
+      letter-spacing: 2px;
+      width: max-content;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+
+      &:hover {
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+      }
     }
   }
 }
