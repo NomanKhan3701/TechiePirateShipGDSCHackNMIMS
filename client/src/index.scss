@@ -6,6 +6,21 @@
 
 body {
   padding-top: 80px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb(161, 161, 161);
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgb(233, 231, 231);
+    border-radius: 50px;
+  }
 }
 
 a {

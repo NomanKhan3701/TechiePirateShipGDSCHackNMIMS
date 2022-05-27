@@ -10,7 +10,8 @@
     border-radius: 20px;
 
     @media screen and (max-width: 650px) {
-        width: 90vw;
+      width: 90vw;
+      padding: 30px;
     }
 
     h1 {
@@ -41,6 +42,10 @@
       border-radius: 20px;
       margin-left: auto;
       margin-right: auto;
+
+      @media screen and (max-width: 500px) {
+        width: 180px;
+      }
 
       &:hover {
         box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
