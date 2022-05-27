@@ -28,6 +28,23 @@
     padding: 10px 30px;
     border-radius: 10px;
 
+    .total {
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      margin-left: 0;
+    }
+
+    .gst {
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      margin-left: 0;
+      margin-bottom: 40px;
+    }
+
     .btn {
       background: black;
       font-size: 19px;
