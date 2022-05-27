@@ -13,7 +13,8 @@ const FoodItemSchema = new mongoose.Schema({
   BestTimeToEat:[String],
   Category:String,
   Cuisine: [String],
-  Reviews: [String]
+  Reviews: [String],
+  Likes:[String],
 });
 
 const validate = (data) => {
