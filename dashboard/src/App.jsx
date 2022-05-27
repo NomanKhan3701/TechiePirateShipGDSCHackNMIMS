@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router";
 import Home from "../../client/src/pages/Home/Home";
-import "./App.css";
+import "./App.scss";
 import Navbar from "./components/Navbar/Navbar"
 import AddItem from "./pages/AddItem/AddItem";
 import Ingredients from "./pages/Ingredients/Ingredients";
@@ -13,7 +13,7 @@ import Signup from "./pages/Signup/Signup";
 function App() {
   return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
