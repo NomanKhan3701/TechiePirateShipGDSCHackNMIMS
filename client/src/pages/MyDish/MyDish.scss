@@ -1,0 +1,75 @@
+.my-dish {
+  padding: 20px 80px;
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 1000px) {
+    padding: 20px 20px;
+  }
+
+  @media screen and (max-width: 900px) {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+  }
+
+  .card-container {
+    width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .bill-container {
+    width: 400px;
+    margin-top: 20px;
+    height: max-content;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 10px 30px;
+    border-radius: 10px;
+
+    @media screen and (max-width: 500px) {
+      width: 100%;
+    }
+
+    .total {
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      margin-left: 0;
+    }
+
+    .gst {
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+      margin-left: 0;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      background: black;
+      font-size: 19px;
+      margin-top: 30px;
+      color: white;
+      padding: 15px 60px;
+      border-radius: 20px;
+      letter-spacing: 2px;
+      width: max-content;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+
+      @media screen and (max-width: 500px) {
+        padding: 10px 30px;
+        font-size: 17px;
+      }
+
+      &:hover {
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}

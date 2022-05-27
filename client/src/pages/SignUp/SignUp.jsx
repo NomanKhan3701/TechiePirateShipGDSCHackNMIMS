@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
-// import "./Login.scss";
+import "./SignUp.scss";
 
 const SignUp = () => {
   const [isLoading, setLoading] = useState(false);
@@ -70,7 +70,7 @@ const SignUp = () => {
     }
   };
   return (
-    <div>
+    <div className="signup-container">
       <ToastContainer></ToastContainer>
       <input
         type="text"
@@ -108,7 +108,9 @@ const SignUp = () => {
         onChange={onChange}
       ></input>
 
-      <button onClick={submit}>Submit</button>
+      <div className="btn" onClick={submit}>
+        Submit
+      </div>
     </div>
   );
 };

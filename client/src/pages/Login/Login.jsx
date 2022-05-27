@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
-// import "./Login.scss";
+import "./Login.scss";
 
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
@@ -40,8 +40,9 @@ const Login = () => {
     }
   };
   return (
-    <div>
+    <div className="login-container">
       <ToastContainer></ToastContainer>
+<<<<<<< HEAD
       <input
         type="text"
         name="MobileNumber"
@@ -63,6 +64,26 @@ const Login = () => {
       >
         Submit
       </button>
+=======
+      <div className="login">
+        <h1>Login</h1>
+        <input
+          type="text"
+          name="username"
+          value={loginData.username}
+          placeholder="username"
+          onChange={onChange}
+        ></input>
+        <input
+          type="password"
+          name="password"
+          value={loginData.password}
+          placeholder="password"
+          onChange={onChange}
+        ></input>
+        <div className="btn" onClick={submit}>Submit</div>
+      </div>
+>>>>>>> 7cfbc8c9b4f564c1fa061c6101f520ac91c57ed8
     </div>
   );
 };
