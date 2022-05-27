@@ -23,7 +23,6 @@ const Signup = async (req, res) => {
     await new Client({ ...req.body, password: hashPassword }).save();
     res.status(201).send({ message: "User Created successfully" });
   } catch (error) {
-    console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
 };

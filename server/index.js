@@ -5,6 +5,7 @@ const app = express();
 const cors = require("cors");
 const authRoutes = require("./routes/Admin");
 const client = require("./routes/client");
+const admin = require("./routes/Admin");
 // const userRoute = require('./routes/user')
 
 dotenv.config();
@@ -17,7 +18,8 @@ app.use(cors());
 /* All Routes here */
 // app.use("/api/user", userRoute);
 
-app.use("/api", client);
+app.use("/api/client", client);
+app.use("/api/Admin", admin);
 
 app.listen(PORT, () => {
   try {
@@ -28,7 +30,7 @@ app.listen(PORT, () => {
       },
       () => console.log(`Server running at port ${PORT}`)
     );
-  } catch (e) {
-    console.log(e);
+  } catch (error) {
+    console.log(error);
   }
 });
