@@ -1,11 +1,17 @@
 import React from "react";
 import Card from "../../components/Card/Card";
 import food1 from "../../assets/food1.jpg";
+import { IoMdAdd } from "react-icons/io";
+import { Link } from "react-router-dom";
 import "./Menu.scss";
 
 const Menu = () => {
   return (
     <div className="menu">
+      <Link to='/additem' className="add-item">
+        <span>Add Item</span>
+        <IoMdAdd />
+      </Link>
       <div className="card-container">
         <Card
           img={food1}
