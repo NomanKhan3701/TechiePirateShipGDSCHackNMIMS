@@ -1,9 +1,9 @@
-const express = require('/')
+// const express = require('/')
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get('/:id',(req,res)=> {
-    
-})
+// router.get('/:id',(req,res)=> {
 
-export default router
+// })
+
+// export default router
