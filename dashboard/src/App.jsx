@@ -21,7 +21,8 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/order" element={<Order />} />
         <Route path="/ingredients" element={<Ingredients />} />
-        <Route path="/additem" element={<AddItem />} />
+        <Route path="/additemtomenu" element={<AddItem />} />
+        <Route path="/additemtospecial" element={<AddItem />} />
       </Routes>
     </div>
   );
