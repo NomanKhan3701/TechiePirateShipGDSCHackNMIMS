@@ -12,7 +12,7 @@ const Navbar = () => {
         <img src="" alt="blog logo" />
       </div>
       <div className="search-container">
-        <input type="text" placeholder="Search post..." />
+        <input type="text" placeholder="Search food..." />
         <BsSearch className="i" />
       </div>
       <div className="links">
