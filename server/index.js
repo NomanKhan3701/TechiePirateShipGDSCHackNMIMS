@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const app = express();
 const multer = require("multer");
 const cors = require("cors");
-const authRoutes =require("./routes/Admin")
+const authRoutes = require("./routes/Admin");
 // const userRoute = require('./routes/user')
 
 dotenv.config();
@@ -20,7 +20,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.send("Hallaluya");
 });
-app.use('/api',authRoutes)
+app.use("/api", authRoutes);
 
 app.listen(PORT, () => {
   try {
