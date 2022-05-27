@@ -38,6 +38,10 @@
       @media screen and (max-width: 700px) {
         width: 150px;
       }
+
+      @media screen and (max-width: 600px) {
+        width: 130px;
+      }
     }
 
     @media screen and (max-width: 800px) {
@@ -47,6 +51,10 @@
     @media screen and (max-width: 620px) {
       position: absolute;
       right: 50px;
+    }
+
+    @media screen and (max-width: 600px) {
+      right: 15px;
     }
   }
 
@@ -186,6 +194,7 @@
 
           &:hover {
             box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+            background: rgb(40, 23, 38);
           }
         }
 
