@@ -1,11 +1,5 @@
 const { FoodItem, validate } = require("../models/FoodItem");
-const AdminData = (req, res) => {
-  try {
-    res.status(200).send("Successfull request to Admin");
-  } catch (error) {
-    res.status(500).send({ message: "Internal Server Error" });
-  }
-};
+
 const AddFoodItem = async (req, res) => {
   try {
     const { error } = validate(req.body);
@@ -51,4 +45,4 @@ const GetFoodItems = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-module.exports = { AdminData, AddFoodItem, DeleteFoodItem, GetFoodItems };
+module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems };

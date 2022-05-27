@@ -1,13 +1,21 @@
 const router = require("express").Router();
 const {
-  AdminData,
   AddFoodItem,
   DeleteFoodItem,
   GetFoodItems,
-} = require("../controllers/Admin");
-const { FoodItem } = require("../models/FoodItem");
+} = require("../controllers/FoodItems");
+const {
+  CreateEmployee,
+  AdminLogin,
+  TestAdmin,
+} = require("../controllers/AdminData");
 
-router.get("/", AdminData);
+router.post("/Test/",TestAdmin)
+router.get("/Test/",(req,res)=>{
+
+});
+router.post("/CreateEmployee", CreateEmployee);
+router.post("/Login", AdminLogin);
 router.post("/FoodItem", AddFoodItem);
 router.get("/FoodItem", GetFoodItems);
 router.delete("/FoodItem", DeleteFoodItem);
