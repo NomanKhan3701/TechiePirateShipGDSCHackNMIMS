@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [loggedIn, setloggedIn] = useState(false);
 
+  const navLinkStyle = ({ isActive }) => {
+    return {
+      color: isActive ? "rgb(26, 26, 26)" : "rgb(115, 115, 115)",
+    };
+  };
+
   return (
     <div className="navbar flex-cc">
       <div className="logo">
-        <img src="" alt="blog logo" />
+        <img src={logo} alt="blog logo" />
       </div>
       <div className="search-container">
         <input type="text" placeholder="Search food..." />
@@ -17,18 +24,18 @@ const Navbar = () => {
       </div>
       <div className="links">
         <div className="left-links flex-cc">
-          <Link to="/" className="link active">
+          <NavLink style={navLinkStyle} to="/" className="link">
             Home
-          </Link>
-          <Link to="/menu" className="link">
+          </NavLink>
+          <NavLink style={navLinkStyle} to="/menu" className="link">
             Menu
-          </Link>
-          <Link to="/order" className="link">
+          </NavLink>
+          <NavLink style={navLinkStyle} to="/order" className="link">
             Order
-          </Link>
-          <Link to="/ingredients" className="link">
+          </NavLink>
+          <NavLink style={navLinkStyle} to="/ingredients" className="link">
             Ingredients
-          </Link>
+          </NavLink>
         </div>
         {loggedIn ? (
           <div className="right-links flex-cc">
@@ -38,9 +45,9 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="right-links flex-cc">
-            <Link to="/login" className="link">
+            <NavLink style={navLinkStyle} to="/login" className="link">
               Login
-            </Link>
+            </NavLink>
             <Link to="/signup" className="link btn">
               Signup
             </Link>

@@ -3,7 +3,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
-// import "./Login.scss";
+import "./Login.scss";
 
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
@@ -39,23 +39,26 @@ const Login = () => {
     }
   };
   return (
-    <div>
+    <div className="login-container">
       <ToastContainer></ToastContainer>
-      <input
-        type="text"
-        name="username"
-        value={loginData.username}
-        placeholder="username"
-        onChange={onChange}
-      ></input>
-      <input
-        type="password"
-        name="password"
-        value={loginData.password}
-        placeholder="password"
-        onChange={onChange}
-      ></input>
-      <button onClick={submit}>Submit</button>
+      <div className="login">
+        <h1>Login</h1>
+        <input
+          type="text"
+          name="username"
+          value={loginData.username}
+          placeholder="username"
+          onChange={onChange}
+        ></input>
+        <input
+          type="password"
+          name="password"
+          value={loginData.password}
+          placeholder="password"
+          onChange={onChange}
+        ></input>
+        <div className="btn" onClick={submit}>Submit</div>
+      </div>
     </div>
   );
 };
