@@ -6,7 +6,12 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Menu from "./pages/Menu/Menu";
 import SignUp from "./pages/SignUp/SignUp";
-import Order from "./pages/Order/Order";
+import Order, {
+  CompletedOrders,
+  CookingOrders,
+  Payment,
+  PreviousOrders,
+} from "./pages/Order/Order";
 import MyDish from "./pages/MyDish/MyDish";
 import Favourite from "./pages/Favourite/Favourite";
 import SingleFood from "./pages/SingleFood/SingleFood";
@@ -20,7 +25,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/mydish" element={<MyDish />} />
-        <Route path="/order" element={<Order />} />
+        <Route path="/order" element={<Order />}>
+          <Route path="cookingorders" element={<CookingOrders />} />
+          <Route path="completedorders" element={<CompletedOrders />} />
+          <Route path="previousorders" element={<PreviousOrders />} />
+          <Route path="payment" element={<Payment />} />
+        </Route>
         <Route path="/mydish" element={<MyDish />} />
         <Route path="/favourite" element={<Favourite />} />
         <Route path="/login" element={<Login />} />

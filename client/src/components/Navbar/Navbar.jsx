@@ -39,11 +39,13 @@ const Navbar = () => {
           <NavLink style={navLinkStyle} to="/menu" className="link">
             Menu
           </NavLink>
-          <NavLink style={navLinkStyle} to="/mydish" className="link">
+          <NavLink style={navLinkStyle} to="/mydish" className="link dish">
             My dish
+            <div className="count">6</div>
           </NavLink>
-          <NavLink style={navLinkStyle} to="/order" className="link">
+          <NavLink style={navLinkStyle} to="/order" className="link order">
             Order
+            <div className="count">3</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/favourite" className="link">
             Favourite
@@ -85,7 +87,7 @@ const Navbar = () => {
             >
               <AiFillHome />
               <div className="link-content">
-                <a>Home</a>
+                <span>Home</span>
               </div>
             </NavLink>
             <NavLink
@@ -95,7 +97,7 @@ const Navbar = () => {
             >
               <MdMenuBook />
               <div className="link-content">
-                <a>Menu</a>
+                <span>Menu</span>
               </div>
             </NavLink>
             <NavLink
@@ -105,7 +107,7 @@ const Navbar = () => {
             >
               <IoMdCart />
               <div className="link-content">
-                <a>My Dish</a>
+                <span>My Dish</span>
               </div>
             </NavLink>
             <NavLink
@@ -115,7 +117,7 @@ const Navbar = () => {
             >
               <BsFillCartCheckFill />
               <div className="link-content">
-                <a>Order</a>
+                <span>Order</span>
               </div>
             </NavLink>
             <NavLink
@@ -125,7 +127,7 @@ const Navbar = () => {
             >
               <AiTwotoneHeart />
               <div className="link-content">
-                <a>Favourite</a>
+                <span>Favourite</span>
               </div>
             </NavLink>
             <NavLink
