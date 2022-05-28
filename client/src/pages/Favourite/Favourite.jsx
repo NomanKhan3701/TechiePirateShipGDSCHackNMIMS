@@ -8,13 +8,6 @@ const Favourite = () => {
   return (
     <div className="menu">
       <div className="card-container">
-        <FavouriteCard
-          img={food1}
-          name="Avacado egg"
-          desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit."
-          price={200}
-          status="Available"
-        />
         <Card
           img={food1}
           name="Avacado egg"
