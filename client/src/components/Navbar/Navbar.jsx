@@ -5,12 +5,16 @@ import { BsSearch } from "react-icons/bs";
 import logo from "../../assets/logo.png";
 import { BiX } from "react-icons/bi";
 import { AiOutlineAlignLeft, AiFillHome, AiTwotoneHeart } from "react-icons/ai";
-
+import { useNavigate } from "react-router";
 import { IoMdCart } from "react-icons/io";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { MdMenuBook } from "react-icons/md";
 
 const Navbar = () => {
+  const [loggedIn, setloggedIn] = useState(false);
+  const [toggle, setToggle] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.getItem("token")) setloggedIn(true);
     else setloggedIn(false);
@@ -18,11 +22,8 @@ const Navbar = () => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    window.redirect("/");
+    navigate("/");
   };
-
-  const [loggedIn, setloggedIn] = useState(false);
-  const [toggle, setToggle] = useState(false);
 
   const navLinkStyle = ({ isActive }) => {
     return {
@@ -63,9 +64,9 @@ const Navbar = () => {
         </div>
         {loggedIn ? (
           <div className="right-links flex-cc">
-            <Link onClick={logout} to="/logout" className="link btn">
+            <div onClick={logout} className="link btn">
               Logout
-            </Link>
+            </div>
           </div>
         ) : (
           <div className="right-links flex-cc">

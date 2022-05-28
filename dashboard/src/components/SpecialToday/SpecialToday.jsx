@@ -70,9 +70,9 @@ const SpecialToday = () => {
           <div className="info">
             <div className="title">Add Slides To Special Today</div>
             <div className="utilities">
-              <Link to="/additemtospecial" className="add-special">
+              <div className="add-special btn">
                 Add items to Special <IoMdAdd />
-              </Link>
+              </div>
             </div>
           </div>
         </SwiperSlide>

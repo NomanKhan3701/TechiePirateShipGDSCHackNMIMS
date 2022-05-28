@@ -6,18 +6,24 @@ import { IoMdAdd } from "react-icons/io";
 import { Link, useSearchParams } from "react-router-dom";
 import "./Menu.scss";
 import FullScreenLoader from "../../components/FullScreenLoader/FullScreenLoader";
-const admin_server_url = import .meta.env.VITE_APP_ADMIN_SERVER_URL;
+const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
 
 const Menu = () => {
   const [menuData, setMenuData] = useState();
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${admin_server_url}/FoodItem`).then((response) => {
-      setLoading(false);
-      setMenuData(response.data);
-      console.log(response.data);
-    });
+    axios
+      .get(`${admin_server_url}/FoodItem`, { params: { SortBy: "None" } })
+      .then((response) => {
+        setLoading(false);
+        console.log(response);
+        setMenuData(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   if (isLoading) {
