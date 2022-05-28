@@ -5,7 +5,7 @@ import axios from "axios";
 import { IoMdAdd } from "react-icons/io";
 import { Link, useSearchParams } from "react-router-dom";
 import "./Menu.scss";
-import FullScreenLoader from "./FullScreenLoader";
+import FullScreenLoader from "../../components/FullScreenLoader/FullScreenLoader";
 const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
 
 const Menu = () => {

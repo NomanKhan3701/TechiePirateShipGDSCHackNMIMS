@@ -4,7 +4,7 @@ import { AiOutlineMinus } from "react-icons/ai";
 import { IoMdAdd } from "react-icons/io";
 import ingredient1 from "../../assets/ingredient1.jpg";
 import { Link } from "react-router-dom";
-import FullScreenLoader from "./FullScreenLoader";
+import FullScreenLoader from "../../components/FullScreenLoader/FullScreenLoader";
 const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
 import axios from "axios";
 

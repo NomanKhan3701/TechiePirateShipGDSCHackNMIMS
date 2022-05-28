@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../../components/Card/Card";
 import SpecialToday from "../../components/SpecialToday/SpecialToday";
 import food1 from "../../assets/food1.jpg";
 import "./Home.scss";
+import FullScreenLoader from "../../components/FullScreenLoader/FullScreenLoader";
+import axios from "axios";
+const client_server_url = import.meta.env.VITE_APP_CLIENT_SERVER_URL;
 
 const Home = () => {
+  const [trending, setTrending] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get(`${client_server_url}/getTrending`, {
+        SortBy: "Popularity",
+      })
+      .then((response) => {
+        setLoading(false);
+        setTrending(response.data);
+        console.log(response.data);
+      });
+  }, [trending]);
+
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
+
   return (
     <div className="home">
       <SpecialToday />
