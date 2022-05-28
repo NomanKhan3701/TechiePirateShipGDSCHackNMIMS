@@ -36,19 +36,25 @@ const Login = async (req, res) => {
     const client = await Client.findOne({
       MobileNumber: req.body.MobileNumber,
     });
+
+    console.log(client);
+
+    let validPassword;
+
     if (!client)
       return res.status(401).send({ message: "Invalid Email or Password" });
 
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      client.password
-    );
+    console.log(req.body.password);
+    console.log(client.password);
+
+    validPassword = await bcrypt.compare(req.body.password, client.password);
     if (!validPassword)
       return res.status(401).send({ message: "Invalid Email or Password" });
     const token = client.generateAuthToken();
     res.status(200).send({ data: token, message: "Logged In Successfully" });
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
+    console.log(error);
   }
 };
 const validateLogin = (data) => {
@@ -63,66 +69,65 @@ const validateLogin = (data) => {
   return schema.validate(data);
 };
 
-const UpdateFavourites=async(req,res)=>{
+const UpdateFavourites = async (req, res) => {
   try {
-      const User=await Client.findOne({ MobileNumber : req.body.MobileNumber })
-      const food=await FoodItem.findOne({ItemId:req.body.ItemId})
+    const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
+    const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
 
-      if(!(User && food))
-      res.status(401).send({message:"Invalid MobileNumber or Food Id"})
-      if(User.Favourites.includes(req.body.ItemId))
-      {
-        Client.updateOne(
-      { "MobileNumber":req.body.MobileNumber },
-      { "$pull": { "Favourites":req.body.ItemId  } },
-      function (err, raw) {
-       if (err) res.send(err);
-       res.send(raw);
-       });
-      }
-      else{
+    if (!(User && food))
+      res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
+    if (User.Favourites.includes(req.body.ItemId)) {
       Client.updateOne(
-      { "MobileNumber":req.body.MobileNumber },
-      { "$push": { "Favourites":req.body.ItemId  } },
-      function (err, raw) {
-       if (err) res.send(err);
-       res.send(raw);
-       });
-     }
-
+        { MobileNumber: req.body.MobileNumber },
+        { $pull: { Favourites: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    } else {
+      Client.updateOne(
+        { MobileNumber: req.body.MobileNumber },
+        { $push: { Favourites: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    }
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
-}
+};
 
-const UpdateLikes=async(req,res)=>{
-   try {
-     const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
-     const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
+const UpdateLikes = async (req, res) => {
+  try {
+    const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
+    const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
 
-     if (!(User && food))
-       res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
-     if (User.LikedDishes.includes(req.body.ItemId)) {
-       Client.updateOne(
-         { MobileNumber: req.body.MobileNumber },
-         { $pull: { LikedDishes: req.body.ItemId } },
-         function (err, raw) {
-           if (err) res.send(err);
-           res.send(raw);
-         }
-       );
-     } else {
-       Client.updateOne(
-         { MobileNumber: req.body.MobileNumber },
-         { $push: { LikedDishes: req.body.ItemId } },
-         function (err, raw) {
-           if (err) res.send(err);
-           res.send(raw);
-         }
-       );
-     }
-   } catch (error) {
-     res.status(500).send({ message: "Internal Server Error" });
-   }
-}
-module.exports = { Signup, Login,UpdateFavourites,UpdateLikes };
+    if (!(User && food))
+      res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
+    if (User.LikedDishes.includes(req.body.ItemId)) {
+      Client.updateOne(
+        { MobileNumber: req.body.MobileNumber },
+        { $pull: { LikedDishes: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    } else {
+      Client.updateOne(
+        { MobileNumber: req.body.MobileNumber },
+        { $push: { LikedDishes: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    }
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+};
+module.exports = { Signup, Login, UpdateFavourites, UpdateLikes };
