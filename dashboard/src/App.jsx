@@ -10,7 +10,6 @@ import Menu from "./pages/Menu/Menu";
 import Order, {
   CompletedOrders,
   CookingOrders,
-  Payment,
   PreviousOrders,
 } from "./pages/Order/Order";
 import Signup from "./pages/Signup/Signup";
@@ -29,7 +28,6 @@ function App() {
           <Route path="cookingorders" element={<CookingOrders />} />
           <Route path="completedorders" element={<CompletedOrders />} />
           <Route path="previousorders" element={<PreviousOrders />} />
-          <Route path="payment" element={<Payment />} />
         </Route>
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/additemtomenu" element={<AddItem />} />

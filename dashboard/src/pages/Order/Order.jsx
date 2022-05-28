@@ -37,9 +37,6 @@ const Order = () => {
           <NavLink style={navLinkStyle} to="previousorders" className="link">
             <BsFillCartCheckFill /> Previous Orders
           </NavLink>
-          <NavLink style={navLinkStyle} to="payment" className="link">
-            <MdOutlinePayment /> Payment
-          </NavLink>
         </div>
       </div>
       <div className="right">
@@ -52,7 +49,7 @@ const Order = () => {
 export const CookingOrders = (props) => {
   return (
     <div className="cooking-orders">
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -70,9 +67,9 @@ export const CookingOrders = (props) => {
             <div className="price">Price - $1000</div>
           </div>
         </div>
-        <div className="bottom">View Details</div>
+        <div className="bottom">Complete</div>
       </div>
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -90,9 +87,9 @@ export const CookingOrders = (props) => {
             <div className="price">Price - $1000</div>
           </div>
         </div>
-        <div className="bottom">View Details</div>
+        <div className="bottom">Complete</div>
       </div>
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -110,9 +107,9 @@ export const CookingOrders = (props) => {
             <div className="price">Price - $1000</div>
           </div>
         </div>
-        <div className="bottom">View Details</div>
+        <div className="bottom">Complete</div>
       </div>
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -130,9 +127,9 @@ export const CookingOrders = (props) => {
             <div className="price">Price - $1000</div>
           </div>
         </div>
-        <div className="bottom">View Details</div>
+        <div className="bottom">Complete</div>
       </div>
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -150,7 +147,7 @@ export const CookingOrders = (props) => {
             <div className="price">Price - $1000</div>
           </div>
         </div>
-        <div className="bottom">View Details</div>
+        <div className="bottom">Complete</div>
       </div>
     </div>
   );
@@ -159,13 +156,37 @@ export const CookingOrders = (props) => {
 export const CompletedOrders = (props) => {
   return (
     <div className="completed-orders">
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
             <span className="date">27 Feb 2003</span>
           </div>
-          <div className="status">Completed</div>
+          <div className="status">Waiting for payment</div>
+        </div>
+        <div className="middle">
+          <div className="left">
+            <div className="order-info">Dragon Chicken x 1,</div>
+            <div className="order-info">Veg Fried Rice x 1</div>
+            <div className="order-info">& Schezwan Cauliflower x 1</div>
+          </div>
+          <div className="right">
+            <div className="price">Price - $1000</div>
+          </div>
+        </div>
+        <div className="bottom">
+          <div className="btn1">View Details</div>
+          <div className="btn2">Paid</div>
+        </div>
+      </div>
+
+      <div className="order-card">
+        <div className="top">
+          <div className="info">
+            <span className="order-number">#oms8328273 | </span>
+            <span className="date">27 Feb 2003</span>
+          </div>
+          <div className="status">Waiting for payment</div>
         </div>
         <div className="middle">
           <div className="left">
@@ -182,14 +203,14 @@ export const CompletedOrders = (props) => {
           <div className="btn2">Pay</div>
         </div>
       </div>
-      
-      <div className="card">
+
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
             <span className="date">27 Feb 2003</span>
           </div>
-          <div className="status">Completed</div>
+          <div className="status">Waiting for payment</div>
         </div>
         <div className="middle">
           <div className="left">
@@ -206,14 +227,14 @@ export const CompletedOrders = (props) => {
           <div className="btn2">Pay</div>
         </div>
       </div>
-      
-      <div className="card">
+
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
             <span className="date">27 Feb 2003</span>
           </div>
-          <div className="status">Completed</div>
+          <div className="status">Waiting for payment</div>
         </div>
         <div className="middle">
           <div className="left">
@@ -230,31 +251,6 @@ export const CompletedOrders = (props) => {
           <div className="btn2">Pay</div>
         </div>
       </div>
-      
-      <div className="card">
-        <div className="top">
-          <div className="info">
-            <span className="order-number">#oms8328273 | </span>
-            <span className="date">27 Feb 2003</span>
-          </div>
-          <div className="status">Completed</div>
-        </div>
-        <div className="middle">
-          <div className="left">
-            <div className="order-info">Dragon Chicken x 1,</div>
-            <div className="order-info">Veg Fried Rice x 1</div>
-            <div className="order-info">& Schezwan Cauliflower x 1</div>
-          </div>
-          <div className="right">
-            <div className="price">Price - $1000</div>
-          </div>
-        </div>
-        <div className="bottom">
-          <div className="btn1">View Details</div>
-          <div className="btn2">Pay</div>
-        </div>
-      </div>
-      
     </div>
   );
 };
@@ -262,7 +258,7 @@ export const CompletedOrders = (props) => {
 export const PreviousOrders = (props) => {
   return (
     <div className="previous-orders">
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -282,7 +278,7 @@ export const PreviousOrders = (props) => {
         </div>
         <div className="bottom">View Details</div>
       </div>
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -302,7 +298,7 @@ export const PreviousOrders = (props) => {
         </div>
         <div className="bottom">View Details</div>
       </div>
-      <div className="card">
+      <div className="order-card">
         <div className="top">
           <div className="info">
             <span className="order-number">#oms8328273 | </span>
@@ -322,14 +318,8 @@ export const PreviousOrders = (props) => {
         </div>
         <div className="bottom">View Details</div>
       </div>
-    
     </div>
   );
 };
 
-export const Payment = (props) => {
-  return <div className="payment">Payment</div>;
-};
-
 export default Order;
-

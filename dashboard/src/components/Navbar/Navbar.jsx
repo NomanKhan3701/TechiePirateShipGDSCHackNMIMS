@@ -43,7 +43,7 @@ const Navbar = () => {
             <div className="count">80</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/ingredients" className="link">
-            Ingredients
+            Inventory
           </NavLink>
         </div>
         {loggedIn ? (
@@ -54,12 +54,9 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="right-links flex-cc">
-            <NavLink style={navLinkStyle} to="/login" className="link">
+            <NavLink to="/login" className="link btn">
               Login
             </NavLink>
-            <Link to="/signup" className="link btn">
-              Signup
-            </Link>
           </div>
         )}
       </div>
@@ -105,22 +102,15 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <IoMdCart />
-              <div className="link-content">Ingredients</div>
+              <div className="link-content">Inventory</div>
             </NavLink>
             <NavLink
               to="/login"
-              className="link"
+              className="btn"
               onClick={() => setToggle(false)}
             >
               Login
             </NavLink>
-            <Link
-              to="/signup"
-              className="link btn"
-              onClick={() => setToggle(false)}
-            >
-              Signup
-            </Link>
           </div>
         </div>
       </div>
