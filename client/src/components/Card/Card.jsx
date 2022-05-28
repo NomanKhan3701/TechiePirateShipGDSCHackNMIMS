@@ -1,8 +1,7 @@
 import React from "react";
 import "./Card.scss";
 import { BiLike, BiComment } from "react-icons/bi";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { MdDelete } from "react-icons/md";
+import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import LimitChar from "../LimitChar/LimitChar";
 
 const Card = (props) => {
@@ -36,8 +35,11 @@ const Card = (props) => {
         </div>
         <div className="right flex-cc">
           <div className="i">
+            <AiOutlineHeart />
+          </div>
+          <div className="i">
             <AiOutlineShoppingCart />
-            <span>Add to your dish</span>
+            <span>Add to dish</span>
           </div>
         </div>
       </div>
