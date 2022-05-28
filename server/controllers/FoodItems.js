@@ -1,4 +1,5 @@
 const { FoodItem, validate } = require("../models/FoodItem");
+const {Client}=require("../models/Client")
 
 const AddFoodItem = async (req, res) => {
   try {
@@ -49,7 +50,11 @@ const GetFoodItems = async (req, res) => {
   }
 };
 const UpdateFoodItems =async(req,res)=>{
-  
+  try {
+
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
 }
 
 module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems,UpdateFoodItems };

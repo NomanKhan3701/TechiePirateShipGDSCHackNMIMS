@@ -108,18 +108,37 @@ const UpdateLikes=async(req,res)=>{
          { $pull: { LikedDishes: req.body.ItemId } },
          function (err, raw) {
            if (err) res.send(err);
-           res.send(raw);
+           console.log(raw);
          }
        );
+       food.Popularity -= 1;
+       await FoodItem.updateOne(
+         { ItemId: food.ItemId },
+         { Popularity: food.Popularity },
+         function (err, raw) {
+           if (err) res.send(err);
+           console.log(raw);
+         }
+        
+       );
+        res.send({ Message: "Edited Succesfully" });
      } else {
-       Client.updateOne(
+
+       await Client.updateOne(
          { MobileNumber: req.body.MobileNumber },
          { $push: { LikedDishes: req.body.ItemId } },
          function (err, raw) {
-           if (err) res.send(err);
-           res.send(raw);
+           if (err) console.log(err);
+           console.log(raw);
          }
        );
+       food.Popularity+=1;
+       await FoodItem.updateOne(
+         {ItemId:food.ItemId},{Popularity:food.Popularity},function(err,raw){
+           if(err)console.log(err);
+           console.log(raw)
+         }
+       )
      }
    } catch (error) {
      res.status(500).send({ message: "Internal Server Error" });
