@@ -12,12 +12,15 @@ import { MdMenuBook } from "react-icons/md";
 
 const Navbar = () => {
   useEffect(() => {
-    if(localStorage.getItem("token"))
-    setloggedIn(true);
-    else
-    setloggedIn(false);
-  }, [])
-  
+    if (localStorage.getItem("token")) setloggedIn(true);
+    else setloggedIn(false);
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.redirect("/");
+  };
+
   const [loggedIn, setloggedIn] = useState(false);
   const [toggle, setToggle] = useState(false);
 
@@ -60,8 +63,8 @@ const Navbar = () => {
         </div>
         {loggedIn ? (
           <div className="right-links flex-cc">
-            <Link to="/profile">
-              <img src="" alt="" />
+            <Link onClick={logout} to="/logout" className="link btn">
+              Logout
             </Link>
           </div>
         ) : (

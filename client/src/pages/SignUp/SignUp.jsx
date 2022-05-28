@@ -63,12 +63,14 @@ const SignUp = () => {
           firstName: loginData.firstname,
           lastName: loginData.lastname,
           MobileNumber: loginData.MobileNumber,
-          password: loginData.password,
+          Password: loginData.password,
         })
         .then((response) => {
           setLoading(false);
           console.log(response);
         });
+
+      window.redirect("/login");
     }
   };
   return (

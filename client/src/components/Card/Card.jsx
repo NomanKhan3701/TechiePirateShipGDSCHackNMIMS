@@ -5,10 +5,22 @@ import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import LimitChar from "../LimitChar/LimitChar";
 
 const Card = (props) => {
-  // const addToDish = () => {
-  //   var cartItems = JSON.parse(localStorage.getItem("cart"));
-  //   localStorage.setItem('cart')
-  // }
+  const addToDish = async () => {
+    var cartItems = await JSON.parse(localStorage.getItem("cart"));
+    if (cartItems === null) cartItems = [];
+    var exist = false;
+    cartItems.map((data) => {
+      if (data.name == props.name) exist = true;
+    });
+    if (exist) return;
+    const data = {
+      name: props.name,
+      quantity: 1,
+    };
+    cartItems.push(data);
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  };
+
   return (
     <div className="post-card">
       <div className="img">
@@ -41,7 +53,7 @@ const Card = (props) => {
           <div className="i">
             <AiOutlineHeart />
           </div>
-          <div className="i" >
+          <div className="i" onClick={addToDish}>
             <AiOutlineShoppingCart />
             <span>Add to dish</span>
           </div>

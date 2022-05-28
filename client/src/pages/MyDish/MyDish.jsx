@@ -1,21 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CartCard from "../../components/CartCard/CartCard";
 import food1 from "../../assets/food1.jpg";
-import food2 from "../../assets/food2.jpg";
-import food3 from "../../assets/food3.jpg";
+
 import { Link } from "react-router-dom";
 import "./MyDish.scss";
 
 const MyDish = () => {
+  const [dish, setDish] = useState([]);
+
+  useEffect(() => {
+    var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    setDish(cartItems);
+    function checkCartData() {
+      const item = JSON.parse(localStorage.getItem("cart"));
+      if (item) {
+        setDish(item);
+      }
+    }
+    window.addEventListener("cart", checkCartData);
+    return () => {
+      window.removeEventListener("cart", checkCartData);
+    };
+  }, []);
+
   return (
     <div className="my-dish">
       <div className="card-container">
-        <CartCard img={food1} />
-        <CartCard img={food2} />
-        <CartCard img={food3} />
-        <CartCard img={food1} />
-        <CartCard img={food2} />
-        <CartCard img={food3} />
+        {dish.map((data, index) => {
+          return (
+            <CartCard
+              key={index}
+              img={food1}
+              name={data.name}
+              quantity={data.quantity}
+              setDish={setDish}
+            />
+          );
+        })}
       </div>
       <div className="bill-container">
         <h1>Price</h1>
