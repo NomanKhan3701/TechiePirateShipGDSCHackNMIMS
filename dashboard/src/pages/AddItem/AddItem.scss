@@ -68,6 +68,9 @@
   /* The switch - the box around the slider */
 
   .categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     h2 {
       margin-bottom: 15px;
     }
