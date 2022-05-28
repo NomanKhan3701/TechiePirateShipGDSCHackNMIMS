@@ -1,81 +1,102 @@
-.ingredients-container {
-  padding-left: 30px;
-  padding-bottom: 70px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-
-  .ingredient {
-    margin: 20px;
-    height: 300px;
+.ingredients {
+  .add-item {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    background: rgb(1, 17, 1);
+    color: white;
+    display: flex;
+    justify-content: center;
     width: 300px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
 
-    .img {
+    svg {
+      margin-left: 10px;
+    }
+  }
+
+  .ingredients-container {
+    padding-left: 30px;
+    padding-bottom: 70px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+
+    .ingredient {
+      margin: 20px;
+      height: 300px;
+      width: 300px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
       position: relative;
-      height: 100%;
-      width: 100%;
-      z-index: 1;
+      cursor: pointer;
 
-      img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
+      .img {
+        position: relative;
         height: 100%;
-        object-fit: cover;
-        z-index: -1;
-      }
-
-      &::after {
-        content: "";
-        background: black;
-        position: absolute;
         width: 100%;
-        height: 100px;
-        opacity: 0.6;
-        border-radius: 10px;
-        z-index: 0;
-        bottom: 0;
-      }
-
-      .item-id {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        font-size: 20px;
-        font-weight: 900;
-        color: rgb(175, 175, 175);
         z-index: 1;
-      }
 
-      .info-div {
-        color: white;
-        z-index: 2;
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: -1;
+        }
 
-        svg {
-          transform: translateX(120px);
+        &::after {
+          content: "";
+          background: black;
+          position: absolute;
+          width: 100%;
+          height: 100px;
+          opacity: 0.6;
+          border-radius: 10px;
+          z-index: 0;
+          bottom: 0;
+        }
+
+        .item-id {
+          position: absolute;
+          right: 10px;
+          bottom: 10px;
+          font-size: 20px;
+          font-weight: 900;
+          color: rgb(175, 175, 175);
+          z-index: 1;
+        }
+
+        .info-div {
           color: white;
-          text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-          font-size: 30px;
-        }
+          z-index: 2;
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
 
-        .name {
-          font-size: 30px;
-          margin-bottom: 5px;
-          transform: translateY(-10px);
-        }
+          svg {
+            transform: translateX(120px);
+            color: white;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            font-size: 30px;
+          }
 
-        .quantity {
-          transform: translateY(-13px);
+          .name {
+            font-size: 30px;
+            margin-bottom: 5px;
+            transform: translateY(-10px);
+          }
+
+          .quantity {
+            transform: translateY(-13px);
+          }
         }
       }
     }

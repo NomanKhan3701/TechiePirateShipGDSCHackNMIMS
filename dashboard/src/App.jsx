@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
+import AddIngredient from "./pages/AddIngredient/AddIngredient";
 import AddItem from "./pages/AddItem/AddItem";
 import Home from "./pages/Home/Home";
 import Ingredients from "./pages/Ingredients/Ingredients";
@@ -32,6 +33,7 @@ function App() {
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/additemtomenu" element={<AddItem />} />
         <Route path="/singleingredient" element={<SingleIngredient />} />
+        <Route path="/addingredient" element={<AddIngredient />} />
       </Routes>
     </div>
   );
