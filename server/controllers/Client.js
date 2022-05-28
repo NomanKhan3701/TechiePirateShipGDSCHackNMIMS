@@ -23,7 +23,6 @@ const Signup = async (req, res) => {
     await new Client({ ...req.body, password: hashPassword }).save();
     res.status(201).send({ message: "User Created successfully" });
   } catch (error) {
-    console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
@@ -33,7 +32,9 @@ const Login = async (req, res) => {
     if (error)
       return res.status(400).send({ message: error.details[0].message });
 
-    const client = await Client.findOne({ email: req.body.MobileNumber });
+    const client = await Client.findOne({
+      MobileNumber: req.body.MobileNumber,
+    });
     if (!client)
       return res.status(401).send({ message: "Invalid Email or Password" });
 

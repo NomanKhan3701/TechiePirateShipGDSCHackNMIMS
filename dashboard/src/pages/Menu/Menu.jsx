@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import food1 from "../../assets/food1.jpg";
+import axios from "axios";
 import { IoMdAdd } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import "./Menu.scss";
+import FullScreenLoader from "./FullScreenLoader";
+const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
 
 const Menu = () => {
+  const [menuData, setMenuData] = useState();
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios.get(`${admin_server_url}/FoodItem`).then((response) => {
+      setLoading(false);
+      setMenuData(response.data);
+      console.log(response.data);
+    });
+  }, []);
+
+  if (isLoading) {
+    return <FullScreenLoader />;
+  }
+
   return (
     <div className="menu">
       <Link to="/additemtomenu" className="add-item">
@@ -13,49 +31,17 @@ const Menu = () => {
         <IoMdAdd />
       </Link>
       <div className="card-container">
-        <Card
-          img={food1}
-          name="Avacado egg"
-          desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-          price={200}
-          status="Available"
-          like={1}
-        />
-        <Card
-          img={food1}
-          name="Avacado egg"
-          desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-          price={200}
-          status="Out Of Stock"
-        />
-        <Card
-          img={food1}
-          name="Avacado egg"
-          desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-          price={200}
-          status="Available"
-        />
-        <Card
-          img={food1}
-          name="Avacado egg"
-          desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-          price={200}
-          status="Out Of Stock"
-        />
-        <Card
-          img={food1}
-          name="Avacado egg"
-          desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-          price={200}
-          status="Out Of Stock"
-        />
-        <Card
-          img={food1}
-          name="Avacado egg"
-          desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-          price={200}
-          status="Out Of Stock"
-        />
+        {menuData.map((item) => {
+          return (
+            <Card
+              img={item.Image}
+              name={item.ItemName}
+              desc={item.Description}
+              price={item.Price}
+              status={item.Availability === true ? "Available" : "Out Of Stock"}
+            />
+          );
+        })}
       </div>
     </div>
   );

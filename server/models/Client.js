@@ -8,6 +8,9 @@ const clientSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   MobileNumber: { type: String, required: true },
   password: { type: String, required: true },
+  prevOrders:[String],
+  Favourites:[String],
+  LikedDishes:[String],
 });
 
 clientSchema.methods.generateAuthToken = function () {
