@@ -1,6 +1,6 @@
 const { Specials, validate } = require("../models/Specials");
 const{FoodItem}=require("../models/FoodItem")
-const AddSpecial = async (req, res) => {
+const   AddSpecial = async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error)
@@ -41,7 +41,9 @@ const RemoveSpecial = async (req, res) => {
 };
 const GetSpecials = async (req, res) => {
   try {
-    const specials = await Specials.find({});
+    let specials = await Specials.find({}).select(Specials.SpecialItem);
+    specials=specials.map(spec=>{return spec.SpecialItem})
+    console.log(specials)
     const Spcls = await FoodItem.find({
       ItemId: {
         $in: specials,
