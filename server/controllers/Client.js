@@ -38,7 +38,6 @@ const Login = async (req, res) => {
     });
 
     console.log(client);
-
     let validPassword;
 
     if (!client)
