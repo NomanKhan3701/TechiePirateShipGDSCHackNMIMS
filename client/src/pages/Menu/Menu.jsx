@@ -36,7 +36,7 @@ const Menu = () => {
   };
 
   useEffect(() => {
-    axios.get(`${client_server_url}/FoodItem/All`)
+    axios.get(`${client_server_url}/FoodItem`,{params:{SortBy:"None"}})
       .then((response) => {
         setLoading(false);
         console.log(response)
