@@ -17,14 +17,12 @@ const Home = () => {
 
   const getTrending = async () => {
     try {
-      const res = await axios.get(`${client_server_url}/FoodItem`, {
-        SortBy: "Popularity",
-      });
+      const Data = await axios.get(`${client_server_url}/FoodItem/Popularity`);
+      console.log(Data)
+      setLoading(false)
     } catch (e) {
       console.log(e);
     }
-
-    console.log(res);
   };
 
   if (isLoading) {
