@@ -12,16 +12,20 @@ const Home = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`${client_server_url}/getTrending`, {
+    getTrending();
+  }, []);
+
+  const getTrending = async () => {
+    try {
+      const res = await axios.get(`${client_server_url}/FoodItem`, {
         SortBy: "Popularity",
-      })
-      .then((response) => {
-        setLoading(false);
-        setTrending(response.data);
-        console.log(response.data);
       });
-  }, [trending]);
+    } catch (e) {
+      console.log(e);
+    }
+
+    console.log(res);
+  };
 
   if (isLoading) {
     return <FullScreenLoader />;

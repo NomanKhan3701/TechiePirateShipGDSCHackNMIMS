@@ -36,11 +36,18 @@ const Menu = () => {
   };
 
   useEffect(() => {
-    axios.get(`${client_server_url}/FoodItem`).then((response) => {
-      setLoading(false);
-      setMenuData(response.data);
-      console.log(response.data);
-    });
+    axios
+      .get(`${client_server_url}/FoodItem`, {
+        SortBy: "None",
+      })
+      .then((response) => {
+        setLoading(false);
+        setMenuData(response.data);
+        console.log(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
 
   if (isLoading) {

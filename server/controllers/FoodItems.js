@@ -47,10 +47,12 @@ const GetFoodItems = async (req, res) => {
       res.send(food);
     }
     if (req.body.SortBy === "None") {
+      console.log("hi");
       const food = await FoodItem.find({});
       res.send(food);
     }
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
