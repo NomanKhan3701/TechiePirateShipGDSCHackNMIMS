@@ -41,11 +41,8 @@ const TestAdmin = async (req, res) => {
 
 const CreateEmployee = async (req, res) => {
   try {
-    const { error } = validate(req.body);
-    if (error)
-      return res.status(400).send({ message: error.details[0].message });
     const admin = await Admin.findOne({
-      Aadhar: req.body.Aadhar,
+      Aadhaar: req.body.Aadhar,
     });
     if (admin)
       return res
