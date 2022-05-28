@@ -49,7 +49,7 @@ const GetFoodItems = async (req, res) => {
   }
 };
 const UpdateFoodItems =async(req,res)=>{
- 
+  
 }
 
 module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems,UpdateFoodItems };
