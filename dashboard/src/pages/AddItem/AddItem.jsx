@@ -1,5 +1,6 @@
-import React from 'react'
-import './AddItem.scss'
+import React from "react";
+import "./AddItem.scss";
+
 
 const AddItem = () => {
   return (
@@ -35,4 +36,4 @@ const AddItem = () => {
   )
 }
 
-export default AddItem
+export default AddItem;

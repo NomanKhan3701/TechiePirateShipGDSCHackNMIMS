@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router";
-import Home from "../../client/src/pages/Home/Home";
+// import Home from "../../client/src/pages/Home/Home";
 import "./App.scss";
 import Navbar from "./components/Navbar/Navbar"
 import AddItem from "./pages/AddItem/AddItem";
+import Home from "./pages/Home/Home";
 import Ingredients from "./pages/Ingredients/Ingredients";
 import Login from "./pages/Login/Login";
 import Menu from "./pages/Menu/Menu";
