@@ -48,14 +48,19 @@ const AddItem = () => {
   // };
 
   const submit = () => {
-    console.log(prevImg);
+    setFoodData((data) => {
+      return { ...data, Image: prevImg };
+    });
+    console.log(foodData);
+    console.log("before");
     if (
       !(
         foodData.ItemName &&
         foodData.Image &&
         foodData.Price &&
         foodData.Ingrediants &&
-        foodData.Description
+        foodData.Description &&
+        foodData.Image
       )
     ) {
       toast.error("Fields cannot be empty.", {
