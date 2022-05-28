@@ -45,4 +45,8 @@ const GetFoodItems = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems };
+const UpdateFoodItems =async(req,res)=>{
+ 
+}
+
+module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems,UpdateFoodItems };

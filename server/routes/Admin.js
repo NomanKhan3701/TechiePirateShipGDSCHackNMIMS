@@ -9,15 +9,15 @@ const {
   AdminLogin,
   TestAdmin,
 } = require("../controllers/AdminData");
-
-router.post("/Test/",TestAdmin)
-router.get("/Test/",(req,res)=>{
-
-});
+const { AddSpecial, RemoveSpecial } = require("../controllers/Specials");
+router.post("/Test/", TestAdmin);
+router.get("/Test/", (req, res) => {});
 router.post("/CreateEmployee", CreateEmployee);
 router.post("/Login", AdminLogin);
 router.post("/FoodItem", AddFoodItem);
 router.get("/FoodItem", GetFoodItems);
 router.delete("/FoodItem", DeleteFoodItem);
+router.post("/Specials", AddSpecial);
+router.delete("/Specials", RemoveSpecial);
 
 module.exports = router;
