@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar"
+import Navbar from "./components/Navbar/Navbar";
 import AddItem from "./pages/AddItem/AddItem";
 import Home from "./pages/Home/Home";
 import Ingredients from "./pages/Ingredients/Ingredients";
@@ -13,6 +13,7 @@ import Order, {
   PreviousOrders,
 } from "./pages/Order/Order";
 import Signup from "./pages/Signup/Signup";
+import SingleIngredient from "./pages/SingleIngredient/SingleIngredient";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         </Route>
         <Route path="/ingredients" element={<Ingredients />} />
         <Route path="/additemtomenu" element={<AddItem />} />
+        <Route path="/singleingredient" element={<SingleIngredient />} />
       </Routes>
     </div>
   );

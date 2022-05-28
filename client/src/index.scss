@@ -36,6 +36,12 @@ img {
   background: rgb(226, 226, 226);
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .flex-cc {
   display: flex;
   justify-content: center;
