@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const AddItem = () => {
   const [files, setFiles] = useState([]);
+  const [prevImg, setPrevImg] = useState();
   const categoryData = ["Veg", "Non-Veg", "Vegan"];
   const availibilityData = ["Available", "Not-Available"];
   const cuisineData = ["American", "Indian", "Chineese"];
@@ -47,7 +48,7 @@ const AddItem = () => {
   // };
 
   const submit = () => {
-    console.log(files);
+    console.log(prevImg);
     if (
       !(
         foodData.ItemName &&
@@ -81,7 +82,7 @@ const AddItem = () => {
             onChange={onChange}
           />
 
-          <FileUpload setFiles={setFiles} />
+          <FileUpload setFiles={setFiles} setPrevImg={setPrevImg} />
 
           <div className="categories">
             <select

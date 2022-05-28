@@ -4,6 +4,7 @@ import FileUpload from "../../components/FileUpload/FileUpload";
 
 const AddIngredient = () => {
   const [files, setFiles] = useState([]);
+  const [prevImg, setPrevImg] = useState();
 
   return (
     <div className="add-ingredient">
@@ -17,7 +18,7 @@ const AddIngredient = () => {
             placeholder="Enter Name Of The INGREDIENT"
             className="item-input"
           />
-          <FileUpload setFiles={setFiles} />
+          <FileUpload setFiles={setFiles} setPrevImg={setPrevImg} />
           <input
             type="number"
             name=""
