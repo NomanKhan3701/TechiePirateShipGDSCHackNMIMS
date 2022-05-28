@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import FileUpload from "../../components/FileUpload/FileUpload";
 import "./AddItem.scss";
 import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
 
 const AddItem = () => {
   const [files, setFiles] = useState([]);
@@ -17,12 +19,11 @@ const AddItem = () => {
     Category: "Veg",
     Cuisine: "American",
     BestTimeToEat: "Breakfast",
-    Price: "",
-    Availability: "Available",
-    Ingrediants: "",
+    Price: null,
+    Availability: true,
+    Ingredients: "",
     Description: "",
   });
-
   const onChange = (event) => {
     const { name, value } = event.target;
     setFoodData((prevValue) => {
@@ -49,24 +50,48 @@ const AddItem = () => {
 
   const submit = () => {
     setFoodData((data) => {
-      return { ...data, Image: prevImg };
+      return {
+        ...data,
+        Image: prevImg,
+        Price: Number(data.Price),
+        Cuisine: [data.Cuisine],
+        BestTimeToEat: [data.BestTimeToEat],
+        Ingredients: data.Ingredients.split(","),
+      };
     });
     console.log(foodData);
     console.log("before");
     if (
       !(
         foodData.ItemName &&
-        foodData.Image &&
         foodData.Price &&
-        foodData.Ingrediants &&
-        foodData.Description &&
-        foodData.Image
+        foodData.Ingredients &&
+        foodData.Description
       )
     ) {
       toast.error("Fields cannot be empty.", {
         position: "top-center",
       });
     } else {
+      console.log({ ...foodData });
+      axios
+        .post(`${admin_server_url}/FoodItem`, {
+          ItemId: "2",
+          Image: prevImg,
+          Price: Number(foodData.Price),
+          Cuisine: [foodData.Cuisine],
+          BestTimeToEat: [foodData.BestTimeToEat],
+          Ingredients: Array.isArray(foodData.Ingredients)
+            ? foodData.Ingredients
+            : foodData.Ingredients.split(","),
+          ItemName: foodData.ItemName,
+          Category: foodData.Category,
+          Availability: foodData.Availability,
+          Description: foodData.Description,
+        })
+        .then((res) => {
+          console.log(res);
+        });
     }
     console.log(foodData);
   };
@@ -125,20 +150,20 @@ const AddItem = () => {
               })}
             </select>
           </div>
-          <div className="categories">
+          {/* <div className="categories">
             <select
               className="select-filter"
-              name="Availibility"
-              id="Availibility"
+              name="Availability"
+              id="Availability"
               onChange={dropdownChange}
             >
               {availibilityData.map((data) => {
                 return <option>{data}</option>;
               })}
             </select>
-          </div>
+          </div> */}
           <input
-            type="text"
+            type="number"
             name="Price"
             id="Price"
             placeholder="Enter Price"
@@ -149,11 +174,11 @@ const AddItem = () => {
 
           <input
             type="text"
-            name="Ingrediants"
-            id="Ingrediants"
+            name="Ingredients"
+            id="Ingredients"
             placeholder="Enter Ingredients (seperated by comma ',')"
             className="item-input"
-            value={foodData.Ingrediants}
+            value={foodData.Ingredients}
             onChange={onChange}
           />
           <textarea
