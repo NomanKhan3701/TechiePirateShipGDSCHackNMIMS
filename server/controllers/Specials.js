@@ -1,5 +1,5 @@
 const { Specials, validate } = require("../models/Specials");
-
+const{FoodItem}=require("../models/FoodItem")
 const AddSpecial = async (req, res) => {
   try {
     const { error } = validate(req.body);
@@ -41,7 +41,12 @@ const RemoveSpecial = async (req, res) => {
 const GetSpecials = async (req, res) => {
   try {
     const specials = await Specials.find({});
-    res.status(200).send(specials);
+    const Spcls = await FoodItem.find({
+      ItemId: {
+        $in: specials,
+      },
+    });
+    res.status(200).send(Spcls);
   } catch (error) {
     console.log(error)
     res.status(500).send({ message: "Internal Server Error" });
