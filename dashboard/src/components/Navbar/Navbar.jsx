@@ -38,8 +38,9 @@ const Navbar = () => {
           <NavLink style={navLinkStyle} to="/menu" className="link">
             Menu
           </NavLink>
-          <NavLink style={navLinkStyle} to="/order" className="link">
+          <NavLink style={navLinkStyle} to="/order" className="link order">
             Order
+            <div className="count">80</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/ingredients" className="link">
             Ingredients

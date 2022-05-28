@@ -75,6 +75,25 @@
       }
     }
 
+    .order {
+      position: relative;
+
+      .count {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        top: -9px;
+        right: -6px;
+        background: red;
+        padding: 3px;
+        color: white;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+      }
+    }
+
     .left-links {
       margin-right: 60px;
       @media screen and (max-width: 1400px) {
