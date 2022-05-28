@@ -2,7 +2,7 @@ const router = require("express").Router();
 const {
   AddFoodItem,
   DeleteFoodItem,
-  GetFoodItemsAll,
+  GetFoodItems,
 } = require("../controllers/FoodItems");
 const {
   CreateEmployee,
@@ -21,7 +21,7 @@ router.get("/Test/", (req, res) => {});
 router.post("/CreateEmployee", CreateEmployee);
 router.post("/Login", AdminLogin);
 router.post("/FoodItem", AddFoodItem);
-router.get("/FoodItem", GetFoodItemsAll);
+router.get("/FoodItem", GetFoodItems);
 router.delete("/FoodItem", DeleteFoodItem);
 router.post("/Specials", AddSpecial);
 router.delete("/Specials", RemoveSpecial);

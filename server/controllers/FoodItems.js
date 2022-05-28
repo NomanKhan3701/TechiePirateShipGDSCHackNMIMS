@@ -40,26 +40,26 @@ const DeleteFoodItem = async (req, res) => {
   }
 };
 
-const GetFoodItemsPopular = async (req, res) => {
-  try { 
-      console.log("Popularity");
-      const food = await FoodItem.find({}).sort({ Popularity: -1 });
+const GetFoodItems=async(req,res)=>{
+  const SortBy=req.query.SortBy
+  try {
+    if(SortBy==="None")
+    {
+      const food = await FoodItem.find({});
       res.send(food);
+    }
+    else if(SortBy==="Popularity")
+    {
+       const food = await FoodItem.find({}).sort({ Popularity: -1 });
+       res.send(food);
+    }
+   
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
-};
-const GetFoodItemsAll= async(req,res)=>{
-try {
-  console.log("All");
-  const food = await FoodItem.find({});
-  res.send(food);
-} catch (error) {
-  console.log(error);
-  res.status(500).send({ message: "Internal Server Error" });
 }
-}
+
 const UpdateFoodItems = async (req, res) => {
   try {
   } catch (error) {
@@ -67,4 +67,4 @@ const UpdateFoodItems = async (req, res) => {
   }
 };
 
-module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItemsPopular,GetFoodItemsAll, UpdateFoodItems };
+module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems, UpdateFoodItems };

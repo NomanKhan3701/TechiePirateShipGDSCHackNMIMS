@@ -17,7 +17,7 @@ const Home = () => {
 
   const getTrending = async () => {
     try {
-      const Data = await axios.get(`${client_server_url}/FoodItem/Popularity`);
+      const Data = await axios.get(`${client_server_url}/FoodItem`,{params:{SortBy:"Popularity"}});
       console.log(Data)
       setLoading(false)
     } catch (e) {

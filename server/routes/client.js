@@ -5,7 +5,7 @@ const {
   UpdateFavourites,
   UpdateLikes,
 } = require("../controllers/Client");
-const { GetFoodItemsPopular, UpdateFoodItems,GetFoodItemsAll } = require("../controllers/FoodItems");
+const {  UpdateFoodItems,GetFoodItems } = require("../controllers/FoodItems");
 const {
   AddOrder,
   GetOrders,
@@ -18,8 +18,9 @@ router.get("/", (req, res) => {
   res.send("client part");
 });
 router.patch("/FoodItem", UpdateFoodItems);
-router.get("/FoodItem/Popularity", GetFoodItemsPopular);
-router.get("/FoodItem/All",GetFoodItemsAll);
+router.get("/FoodItem",GetFoodItems)
+// router.get("/FoodItem/Popularity", GetFoodItemsPopular);
+// router.get("/FoodItem/All",GetFoodItemsAll);
 router.post("/SignUp", Signup);
 router.post("/Login", Login);
 router.patch("/UpdateFavourites", UpdateFavourites);

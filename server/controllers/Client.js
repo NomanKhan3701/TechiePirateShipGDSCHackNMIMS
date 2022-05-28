@@ -37,12 +37,17 @@ const Login = async (req, res) => {
       MobileNumber: req.body.MobileNumber,
     });
     if (!client)
-      return res.status(401).send({ message: "Invalid Email or Password" });
-
-    const validPassword = await bcrypt.compare(
+      return res.status(401).send({ message: "Invalid Mobile Number or Password" });
+     let validPassword
+    try{
+      validPassword = await bcrypt.compare(
       req.body.password,
-      client.password
+      client.Password
     );
+    } 
+    catch(err){
+     console.log(err);
+    }
     if (!validPassword)
       return res.status(401).send({ message: "Invalid Email or Password" });
     const token = client.generateAuthToken();
