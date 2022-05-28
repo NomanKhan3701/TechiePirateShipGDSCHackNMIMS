@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router";
-import "./App.scss";
+import "./App.css";
 import Navbar from "./components/Navbar/Navbar"
 import AddItem from "./pages/AddItem/AddItem";
 import Home from "./pages/Home/Home";
@@ -21,7 +21,7 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/order" element={<Order />} />
         <Route path="/ingredients" element={<Ingredients />} />
-        <Route path="/additem" element={<AddItem />} />
+        <Route path="/additemtomenu" element={<AddItem />} />
       </Routes>
     </div>
   );
