@@ -70,7 +70,7 @@ const AddItem = () => {
     } else {
       axios
         .post(`${admin_server_url}/FoodItem`, {
-          ItemId: "2",
+          ItemId: foodData.ItemName,
           Image: prevImg,
           Price: Number(foodData.Price),
           Cuisine: [foodData.Cuisine],

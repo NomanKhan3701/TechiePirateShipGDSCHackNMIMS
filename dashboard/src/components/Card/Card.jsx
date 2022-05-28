@@ -10,7 +10,12 @@ import axios from "axios";
 const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
 
 const Card = (props) => {
-  const onDelete = (id) => {};
+  const onDelete = async (id) => {
+    const { data: res } = await axios.delete(`${admin_server_url}/FoodItem`, {
+      data: { ItemId: id },
+    });
+    location.reload();
+  };
 
   return (
     <div className="card">
