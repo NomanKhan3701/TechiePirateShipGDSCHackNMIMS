@@ -6,7 +6,7 @@ const InventorySchema = new mongoose.Schema({
   ItemName: { type: String, required: true },
   Quantity: { type: Number, required: true },
   ItemMeasure: { type: String, required: true },
-  ItemImage: { type: String },
+  ItemImage: { type: String }
 });
 const Inventory = mongoose.model("Inventory", InventorySchema);
 

@@ -1,4 +1,5 @@
 const { FoodItem, validate } = require("../models/FoodItem");
+const {Client}=require("../models/Client")
 
 const AddFoodItem = async (req, res) => {
   try {
@@ -42,14 +43,21 @@ const DeleteFoodItem = async (req, res) => {
 
 const GetFoodItems = async (req, res) => {
   try {
-    const food = await FoodItem.find({});
+    if(req.body.SortBy==="Popularity")
+    {
+    const food = await FoodItem.find({}).sort({Popularity:-1});
     res.send(food)
+    }
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
 const UpdateFoodItems =async(req,res)=>{
-  
+  try {
+
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error" });
+  }
 }
 
 module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems,UpdateFoodItems };
