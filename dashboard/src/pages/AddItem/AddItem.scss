@@ -1,92 +1,67 @@
-$onyx: #3E363F;
-$cinnabar: #DD403A;
-$cosmiclatte: #FFFCE8;
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
 
 .base-container {
-    height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+
+  .form-container {
+    position: relative;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1), 0 0 3px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    width: 600px;
+    padding: 20px 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    background-color: black;
-    font-family: 'Roboto', sans-serif;
+    margin: 40px;
 
-    &::before {
-        background-image: url('../../assets/addItemBackground.jpg');
-        content: "";
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        opacity: 80%;
-
+    h1 {
+      text-align: center;
+      margin: 30px;
+      margin-bottom: 40px;
     }
 
-    .form-container {
-        position: relative;
-        background-color: rgba(255, 255, 255, 0.6);
-        width: 40%;
-        // height: 60%;
-        // opacity: 40%;
-        border-radius: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .item-form {
-            // height: 40%;
-            padding: 40px 0 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .title {
-                align-self: center;
-                font-size: 2.5em;
-                margin-bottom: 40px;
-                font-weight: 700;
-            }
-
-            .desc {
-                font-size: 1.5em;
-                margin-bottom: 5px;
-                font-weight: 400;
-            }
-
-            .item-input {
-                padding: 10px;
-                background: transparent;
-                border: black 0.5px solid;
-                margin-bottom: 20px;
-                border-radius: 20px;
-                font-size: 1.4em;
-                padding-left: 10px;
-
-                &:focus {
-                    outline: none;
-                }
-            }
-
-            .submit-button {
-                width: fit-content;
-                align-self: center;
-                padding: 10px 20px;
-                border-radius: 10px;
-                background: transparent;
-                background-color: #DD403A;
-                border: none;
-                color: white;
-                font-size: 1.5em;
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-
-        }
+    input {
+      width: 100%;
+      margin-bottom: 40px;
+      padding: 15px 20px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), 0 0 3px rgba(0, 0, 0, 0.1);
     }
+
+    textarea {
+      resize: vertical;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1), 0 0 3px rgba(0, 0, 0, 0.1);
+      outline: none;
+      border: none;
+      padding: 15px 20px;
+      width: 100%;
+      height: 160px;
+      border-radius: 20px;
+    }
+
+    .btn {
+      background: rgb(1, 17, 1);
+      color: white;
+      display: flex;
+      justify-content: center;
+      width: 300px;
+      align-items: center;
+      padding: 15px 20px;
+      border-radius: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 30px;
+      margin-top: 40px;
+
+      &:hover {
+        box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
 }

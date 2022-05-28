@@ -1,39 +1,43 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import FileUpload from "../../components/FileUpload/FileUpload";
 import "./AddItem.scss";
 
-
 const AddItem = () => {
-  return (
+  const [files, setFiles] = useState([]);
 
-    <>
-      <div className='base-container'>
-        <div className="form-container">
-          <div className="item-form">
-            <div className="title">
-              ADD NEW ITEM
-            </div>
-            <div className="desc">
-              Enter name of the item.
-            </div>
-            <input type="text" name="" id="" placeholder='Enter name' className='item-input' />
-            <div className="desc">
-              Enter the price for the item.
-            </div>
-            <input type="text" name="" id="" placeholder='Enter Price' className='item-input' />
-            <div className="desc">
-              Enter the ingredients of the item (seperated by comma ',')
-            </div>
-            <input type="text" name="" id="" placeholder='Enter Ingredients' className='item-input' />
-            <div className="desc">
-              Enter the description of the item.
-            </div>
-            <input type="text" name="" id="" placeholder='Enter Description' className='item-input' />
-            <button className='submit-button'>Add Item</button>
-          </div>
+  return (
+    <div className="base-container">
+      <div className="form-container">
+        <div className="item-form">
+          <h1 className="title">ADD NEW ITEM</h1>
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Enter Name Of The Item"
+            className="item-input"
+          />
+          <FileUpload setFiles={setFiles} />
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Enter Price"
+            className="item-input"
+          />
+          <input
+            type="text"
+            name=""
+            id=""
+            placeholder="Enter Ingredients (seperated by comma ',')"
+            className="item-input"
+          />
+          <textarea placeholder="Enter description" />
+          <div className="btn">Add Item</div>
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default AddItem;

@@ -8,8 +8,8 @@ import "./Menu.scss";
 const Menu = () => {
   return (
     <div className="menu">
-      <Link to='/additem' className="add-item">
-        <span>Add Item</span>
+      <Link to="/additemtomenu" className="add-item">
+        <span>Add Item To Menu</span>
         <IoMdAdd />
       </Link>
       <div className="card-container">
@@ -19,6 +19,7 @@ const Menu = () => {
           desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
           price={200}
           status="Available"
+          like={1}
         />
         <Card
           img={food1}

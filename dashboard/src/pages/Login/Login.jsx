@@ -39,23 +39,28 @@ const Login = () => {
     }
   };
   return (
-    <div>
+    <div className="login-container">
       <ToastContainer></ToastContainer>
-      <input
-        type="text"
-        name="id"
-        value={loginData.id}
-        placeholder="id"
-        onChange={onChange}
-      ></input>
-      <input
-        type="password"
-        name="password"
-        value={loginData.password}
-        placeholder="password"
-        onChange={onChange}
-      ></input>
-      <button onClick={submit}>Submit</button>
+      <div className="login">
+        <h1>Login</h1>
+        <input
+          type="text"
+          name="id"
+          value={loginData.id}
+          placeholder="Id"
+          onChange={onChange}
+        ></input>
+        <input
+          type="password"
+          name="password"
+          value={loginData.password}
+          placeholder="password"
+          onChange={onChange}
+        ></input>
+        <div className="btn" onClick={submit}>
+          Submit
+        </div>
+      </div>
     </div>
   );
 };

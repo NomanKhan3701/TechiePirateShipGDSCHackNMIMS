@@ -1,15 +1,31 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
+import logo from "../../assets/logo.png";
+import { BiX } from "react-icons/bi";
+import { AiOutlineAlignLeft, AiFillHome, AiTwotoneHeart } from "react-icons/ai";
+
+import { IoMdCart } from "react-icons/io";
+import { BsFillCartCheckFill } from "react-icons/bs";
+import { MdMenuBook } from "react-icons/md";
 
 const Navbar = () => {
   const [loggedIn, setloggedIn] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
+  const navLinkStyle = ({ isActive }) => {
+    return {
+      color: isActive ? "rgb(26, 26, 26)" : "rgb(115, 115, 115)",
+    };
+  };
 
   return (
     <div className="navbar flex-cc">
       <div className="logo">
-        <img src="" alt="blog logo" />
+        <Link to="/">
+          <img src={logo} alt="blog logo" />
+        </Link>
       </div>
       <div className="search-container">
         <input type="text" placeholder="Search food..." />
@@ -17,21 +33,23 @@ const Navbar = () => {
       </div>
       <div className="links">
         <div className="left-links flex-cc">
-          <Link to="/" className="link active">
+          <NavLink style={navLinkStyle} to="/" className="link active">
             Home
-          </Link>
-          <Link to="/menu" className="link">
+          </NavLink>
+          <NavLink style={navLinkStyle} to="/menu" className="link">
             Menu
-          </Link>
-          <Link to="/mydish" className="link">
+          </NavLink>
+          <NavLink style={navLinkStyle} to="/mydish" className="link dish">
             My dish
-          </Link>
-          <Link to="/order" className="link">
+            <div className="count">6</div>
+          </NavLink>
+          <NavLink style={navLinkStyle} to="/order" className="link order">
             Order
-          </Link>
-          <Link to="/favourite" className="link">
+            <div className="count">3</div>
+          </NavLink>
+          <NavLink style={navLinkStyle} to="/favourite" className="link">
             Favourite
-          </Link>
+          </NavLink>
         </div>
         {loggedIn ? (
           <div className="right-links flex-cc">
@@ -41,14 +59,93 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="right-links flex-cc">
-            <Link to="/login" className="link">
+            <NavLink style={navLinkStyle} to="/login" className="link">
               Login
-            </Link>
+            </NavLink>
             <Link to="/signup" className="link btn">
               Signup
             </Link>
           </div>
         )}
+      </div>
+
+      <div className="sidebar">
+        <AiOutlineAlignLeft
+          className={`toggle-icon toggle-line ${!toggle ? "active" : ""}`}
+          onClick={() => setToggle(true)}
+        />
+        <div className={`sidebar-toggle ${toggle ? "active" : ""}`}>
+          <div className="sidebar-top">
+            <BiX className="toggle-i" onClick={() => setToggle(false)} />
+            <img src={logo} alt="" />
+          </div>
+          <div className="sidebar-links">
+            <NavLink
+              to="/"
+              className="sidebar-link "
+              onClick={() => setToggle(false)}
+            >
+              <AiFillHome />
+              <div className="link-content">
+                <li>Home</li>
+              </div>
+            </NavLink>
+            <NavLink
+              to="/menu"
+              className="sidebar-link"
+              onClick={() => setToggle(false)}
+            >
+              <MdMenuBook />
+              <div className="link-content">
+                <li>Menu</li>
+              </div>
+            </NavLink>
+            <NavLink
+              to="/mydish"
+              className="sidebar-link"
+              onClick={() => setToggle(false)}
+            >
+              <IoMdCart />
+              <div className="link-content">
+                <li>My Dish</li>
+              </div>
+            </NavLink>
+            <NavLink
+              to="/order"
+              className="sidebar-link"
+              onClick={() => setToggle(false)}
+            >
+              <BsFillCartCheckFill />
+              <div className="link-content">
+                <li>Order</li>
+              </div>
+            </NavLink>
+            <NavLink
+              to="/favourite"
+              className="sidebar-link"
+              onClick={() => setToggle(false)}
+            >
+              <AiTwotoneHeart />
+              <div className="link-content">
+                <li>Favourite</li>
+              </div>
+            </NavLink>
+            <NavLink
+              to="/login"
+              className="link"
+              onClick={() => setToggle(false)}
+            >
+              Login
+            </NavLink>
+            <Link
+              to="/signup"
+              className="link btn"
+              onClick={() => setToggle(false)}
+            >
+              Signup
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -10,14 +10,8 @@
     padding: 40px;
     border-radius: 20px;
 
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 650px) {
       width: 90vw;
-      margin: 30px;
-    }
-
-    @media screen and (max-width: 600px) {
-      width: 80vw;
-      margin: 30px 10px;
     }
 
     h1 {
@@ -49,7 +43,7 @@
       margin-left: auto;
       margin-right: auto;
 
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 500px) {
         width: 180px;
       }
 
