@@ -63,85 +63,89 @@ const validateLogin = (data) => {
   return schema.validate(data);
 };
 
-const UpdateFavourites=async(req,res)=>{
+const UpdateFavourites = async (req, res) => {
   try {
-      const User=await Client.findOne({ MobileNumber : req.body.MobileNumber })
-      const food=await FoodItem.findOne({ItemId:req.body.ItemId})
+    const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
+    const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
 
-      if(!(User && food))
-      res.status(401).send({message:"Invalid MobileNumber or Food Id"})
-      if(User.Favourites.includes(req.body.ItemId))
-      {
-        Client.updateOne(
-      { "MobileNumber":req.body.MobileNumber },
-      { "$pull": { "Favourites":req.body.ItemId  } },
-      function (err, raw) {
-       if (err) res.send(err);
-       res.send(raw);
-       });
-      }
-      else{
+    if (!(User && food))
+      res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
+    if (User.Favourites.includes(req.body.ItemId)) {
       Client.updateOne(
-      { "MobileNumber":req.body.MobileNumber },
-      { "$push": { "Favourites":req.body.ItemId  } },
-      function (err, raw) {
-       if (err) res.send(err);
-       res.send(raw);
-       });
-     }
-
+        { MobileNumber: req.body.MobileNumber },
+        { $pull: { Favourites: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    } else {
+      Client.updateOne(
+        { MobileNumber: req.body.MobileNumber },
+        { $push: { Favourites: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    }
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
-}
+};
 
-const UpdateLikes=async(req,res)=>{
-   try {
-     const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
-     const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
+const UpdateLikes = async (req, res) => {
+  try {
+    const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
+    const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
 
-     if (!(User && food))
-       res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
-     if (User.LikedDishes.includes(req.body.ItemId)) {
-       Client.updateOne(
-         { MobileNumber: req.body.MobileNumber },
-         { $pull: { LikedDishes: req.body.ItemId } },
-         function (err, raw) {
-           if (err) res.send(err);
-           console.log(raw);
-         }
-       );
-       food.Popularity -= 1;
-       await FoodItem.updateOne(
+    if (!(User && food)) {
+      res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
+    }
+    
+    if (User.LikedDishes.includes(req.body.ItemId)) {
+      console.log("2heloo");
+      Client.findOneAndUpdate(
+        { MobileNumber: req.body.MobileNumber },
+        { $pull: { LikedDishes: req.body.ItemId } },
+        function (err, raw) {
+          if (err) console.log(err);
+          console.log(raw);
+        }
+      ).clone();
+      food.Popularity -= 1;
+       await FoodItem.findOneAndUpdate(
          { ItemId: food.ItemId },
          { Popularity: food.Popularity },
-         function (err, raw) {
-           if (err) res.send(err);
-           console.log(raw);
-         }
-        
-       );
-        res.send({ Message: "Edited Succesfully" });
-     } else {
-
-       await Client.updateOne(
-         { MobileNumber: req.body.MobileNumber },
-         { $push: { LikedDishes: req.body.ItemId } },
          function (err, raw) {
            if (err) console.log(err);
            console.log(raw);
          }
-       );
-       food.Popularity+=1;
-       await FoodItem.updateOne(
-         {ItemId:food.ItemId},{Popularity:food.Popularity},function(err,raw){
-           if(err)console.log(err);
-           console.log(raw)
+       ).clone();
+    } else {
+      console.log("1heloo");
+      await Client.findOneAndUpdate(
+        { MobileNumber: req.body.MobileNumber },
+        { $push: { LikedDishes: req.body.ItemId } },
+        function (err, raw) {
+          if (err) console.log(err);
+          console.log(raw);
+        }
+      ).clone();
+      food.Popularity += 1;
+       await FoodItem.findOneAndUpdate(
+         { ItemId: food.ItemId },
+         { Popularity: food.Popularity },
+         function (err, raw) {
+           if (err) console.log(err);
+           console.log(raw);
          }
-       )
-     }
-   } catch (error) {
-     res.status(500).send({ message: "Internal Server Error" });
-   }
-}
-module.exports = { Signup, Login,UpdateFavourites,UpdateLikes };
+       ).clone();
+    };
+    res.send({ Message: "Edited Succesfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal Server Error" });
+  }
+};
+module.exports = { Signup, Login, UpdateFavourites, UpdateLikes };

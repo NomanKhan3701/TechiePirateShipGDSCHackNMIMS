@@ -46,5 +46,7 @@ const GetIngredients = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
+const SetIngredients=async(req,res)=>{
 
+}
 module.exports = { AddIngredient, RemoveIngredient, GetIngredients };

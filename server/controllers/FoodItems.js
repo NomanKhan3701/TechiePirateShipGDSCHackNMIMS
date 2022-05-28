@@ -43,8 +43,11 @@ const DeleteFoodItem = async (req, res) => {
 
 const GetFoodItems = async (req, res) => {
   try {
-    const food = await FoodItem.find({});
+    if(req.body.SortBy==="Popularity")
+    {
+    const food = await FoodItem.find({}).sort({Popularity:-1});
     res.send(food)
+    }
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
