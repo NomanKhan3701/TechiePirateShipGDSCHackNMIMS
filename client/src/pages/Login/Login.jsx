@@ -42,7 +42,6 @@ const Login = () => {
   return (
     <div className="login-container">
       <ToastContainer></ToastContainer>
-<<<<<<< HEAD
       <input
         type="text"
         name="MobileNumber"
@@ -64,26 +63,6 @@ const Login = () => {
       >
         Submit
       </button>
-=======
-      <div className="login">
-        <h1>Login</h1>
-        <input
-          type="text"
-          name="username"
-          value={loginData.username}
-          placeholder="username"
-          onChange={onChange}
-        ></input>
-        <input
-          type="password"
-          name="password"
-          value={loginData.password}
-          placeholder="password"
-          onChange={onChange}
-        ></input>
-        <div className="btn" onClick={submit}>Submit</div>
-      </div>
->>>>>>> 7cfbc8c9b4f564c1fa061c6101f520ac91c57ed8
     </div>
   );
 };
