@@ -5,6 +5,8 @@ import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.scss";
 
+const client_server_url = import.meta.env.VITE_APP_CLIENT_SERVER_URL;
+
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
@@ -15,7 +17,6 @@ const Login = () => {
   if (isLoading) {
     return <FullScreenLoader />;
   }
-
   const onChange = (event) => {
     const { name, value } = event.target;
     setLoginData((prevData) => {
@@ -28,41 +29,42 @@ const Login = () => {
       toast.error("Fields cannot be empty.", { position: "top-center" });
     } else {
       setLoading(true);
-      console.log("posting login data.");
-      const { data: response } = await axios.post(
-        `http://localhost:8000/api/Login/`,
-        {
-          MobileNumber: loginData.MobileNumber,
-          password: loginData.password,
-        }
-      );
+
+      const { data: res } = await axios.post(`${client_server_url}/Login/`, {
+        MobileNumber: loginData.MobileNumber,
+        password: loginData.password,
+      });
       localStorage.setItem("token", res.data);
     }
   };
   return (
     <div className="login-container">
       <ToastContainer></ToastContainer>
-      <input
-        type="text"
-        name="MobileNumber"
-        value={loginData.MobileNumber}
-        placeholder="MobileNumber"
-        onChange={onChange}
-      ></input>
-      <input
-        type="password"
-        name="password"
-        value={loginData.password}
-        placeholder="password"
-        onChange={onChange}
-      ></input>
-      <button
-        onClick={() => {
-          handleSubmit();
-        }}
-      >
-        Submit
-      </button>
+      <div className="login">
+        <h1>Login</h1>
+        <input
+          type="text"
+          name="MobileNumber"
+          value={loginData.MobileNumber}
+          placeholder="MobileNumber"
+          onChange={onChange}
+        ></input>
+        <input
+          type="password"
+          name="password"
+          value={loginData.password}
+          placeholder="password"
+          onChange={onChange}
+        ></input>
+        <div
+          className="btn"
+          onClick={() => {
+            handleSubmit();
+          }}
+        >
+          Submit
+        </div>
+      </div>
     </div>
   );
 };

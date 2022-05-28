@@ -27,13 +27,14 @@ const Signup = async (req, res) => {
   }
 };
 const Login = async (req, res) => {
-  console.log(1234);
   try {
     const { error } = validateLogin(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
 
-    const client = await Client.findOne({ MobileNumber: req.body.MobileNumber });
+    const client = await Client.findOne({
+      MobileNumber: req.body.MobileNumber,
+    });
     if (!client)
       return res.status(401).send({ message: "Invalid Email or Password" });
 

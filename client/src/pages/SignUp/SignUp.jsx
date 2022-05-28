@@ -5,6 +5,8 @@ import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./SignUp.scss";
 
+const client_server_url = import.meta.env.VITE_APP_CLIENT_SERVER_URL;
+
 const SignUp = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
@@ -57,7 +59,7 @@ const SignUp = () => {
     } else {
       setLoading(true);
       axios
-        .post(`http://localhost:8000/api/SignUp/`, {
+        .post(`${client_server_url}/SignUp/`, {
           firstName: loginData.firstname,
           lastName: loginData.lastname,
           MobileNumber: loginData.MobileNumber,
@@ -72,44 +74,47 @@ const SignUp = () => {
   return (
     <div className="signup-container">
       <ToastContainer></ToastContainer>
-      <input
-        type="text"
-        name="firstname"
-        value={loginData.firstname}
-        placeholder="firstname"
-        onChange={onChange}
-      ></input>
-      <input
-        type="text"
-        name="lastname"
-        value={loginData.lastname}
-        placeholder="lastname"
-        onChange={onChange}
-      ></input>
-      <input
-        type="text"
-        name="MobileNumber"
-        value={loginData.MobileNumber}
-        placeholder="mobile number"
-        onChange={onChange}
-      ></input>
-      <input
-        type="password"
-        name="password"
-        value={loginData.password}
-        placeholder="password"
-        onChange={onChange}
-      ></input>
-      <input
-        type="password"
-        name="cnfrmPassword"
-        value={loginData.cnfrmPassword}
-        placeholder="confirm password"
-        onChange={onChange}
-      ></input>
+      <div className="signup">
+        <h1>SingUp</h1>
+        <input
+          type="text"
+          name="firstname"
+          value={loginData.firstname}
+          placeholder="firstname"
+          onChange={onChange}
+        ></input>
+        <input
+          type="text"
+          name="lastname"
+          value={loginData.lastname}
+          placeholder="lastname"
+          onChange={onChange}
+        ></input>
+        <input
+          type="text"
+          name="MobileNumber"
+          value={loginData.MobileNumber}
+          placeholder="mobile number"
+          onChange={onChange}
+        ></input>
+        <input
+          type="password"
+          name="password"
+          value={loginData.password}
+          placeholder="password"
+          onChange={onChange}
+        ></input>
+        <input
+          type="password"
+          name="cnfrmPassword"
+          value={loginData.cnfrmPassword}
+          placeholder="confirm password"
+          onChange={onChange}
+        ></input>
 
-      <div className="btn" onClick={submit}>
-        Submit
+        <div className="btn" onClick={submit}>
+          Submit
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.scss";
 
+const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
+
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
@@ -23,19 +25,17 @@ const Login = () => {
     });
   };
 
-  const submit = () => {
+  const submit = async () => {
     if (!(loginData.id && loginData.password)) {
       toast.error("Fields cannot be empty.", { position: "top-center" });
     } else {
       setLoading(true);
-      axios
-        .post(``, {
-          id: loginData.id,
-          password: loginData.password,
-        })
-        .then((response) => {
-          setLoading(false);
-        });
+      const { data: res } = await axios.post(`${admin_server_url}/Login`, {
+        AdminId: loginData.id,
+        Password: loginData.password,
+      });
+      localStorage.setItem("token", res.data);
+      console.log(res);
     }
   };
   return (

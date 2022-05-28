@@ -38,24 +38,23 @@ const SetOrder = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-const PayOrder = async(req,res)=>{
+const PayOrder = async (req, res) => {
   try {
-     Order.updateOne(
-       { OrderId: req.body.OrderId },
-       { Paid: <True></True> },
-       function (err, docs) {
-         if (err) {
-           res.send(err);
-         } else {
-           res.status(200).send(docs);
-         }
-       }
-     );
-
+    Order.updateOne(
+      { OrderId: req.body.OrderId },
+      { Paid: true },
+      function (err, docs) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.status(200).send(docs);
+        }
+      }
+    );
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
-}
+};
 const TerminateOrder = async (req, res) => {
   try {
     Order.updateOne(
@@ -73,4 +72,4 @@ const TerminateOrder = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-module.exports = { AddOrder, GetOrders, SetOrder, TerminateOrder,PayOrder };
+module.exports = { AddOrder, GetOrders, SetOrder, TerminateOrder, PayOrder };
