@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Card from "../../components/Card/Card";
 import food1 from "../../assets/food1.jpg";
 import { IoMdAdd } from "react-icons/io";
@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import "./Menu.scss";
 
 const Menu = () => {
-  const categoryData = ["Veg", "Non-Veg", "Vegan"];
-  const availibilityData = ["Available", "Not-Available"];
-  const cuisineData = ["American", "Indian", "Chineese"];
-  const bestTimeToEatData = ["Breakfast", "Lunch", "Dinner", "Desert"];
+  const categoryData = ["All", "Veg", "Non-Veg", "Vegan"];
+  const availibilityData = ["Available", "Not-Available", "All"];
+  const cuisineData = ["Indian", "American", "Chineese", "All"];
+  const bestTimeToEatData = ["Breakfast", "Lunch", "Dinner", "Desert", "All"];
 
   const [foodData, setFoodData] = useState({
     ItemName: "",
