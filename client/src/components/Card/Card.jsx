@@ -5,6 +5,10 @@ import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import LimitChar from "../LimitChar/LimitChar";
 
 const Card = (props) => {
+  // const addToDish = () => {
+  //   var cartItems = JSON.parse(localStorage.getItem("cart"));
+  //   localStorage.setItem('cart')
+  // }
   return (
     <div className="post-card">
       <div className="img">
@@ -37,7 +41,7 @@ const Card = (props) => {
           <div className="i">
             <AiOutlineHeart />
           </div>
-          <div className="i">
+          <div className="i" >
             <AiOutlineShoppingCart />
             <span>Add to dish</span>
           </div>
