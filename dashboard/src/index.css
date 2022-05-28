@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body {
+  padding-top: 90px;
+} */
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+.i {
+  cursor: pointer;
+}
+
+.flex-cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-cc {
+  display: grid;
+  place-items: center;
+}
