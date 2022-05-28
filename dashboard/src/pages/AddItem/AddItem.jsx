@@ -30,9 +30,6 @@ const AddItem = () => {
       return { ...prevValue, [name]: value };
     });
   };
-  const addImage = (event) => {
-    console.log(event.target);
-  };
   const dropdownChange = (event) => {
     const { name, value } = event.target;
     setFoodData((prevValue) => {
@@ -59,8 +56,6 @@ const AddItem = () => {
         Ingredients: data.Ingredients.split(","),
       };
     });
-    console.log(foodData);
-    console.log("before");
     if (
       !(
         foodData.ItemName &&
@@ -73,7 +68,6 @@ const AddItem = () => {
         position: "top-center",
       });
     } else {
-      console.log({ ...foodData });
       axios
         .post(`${admin_server_url}/FoodItem`, {
           ItemId: "2",
@@ -93,7 +87,6 @@ const AddItem = () => {
           console.log(res);
         });
     }
-    console.log(foodData);
   };
 
   return (

@@ -5,8 +5,13 @@ import { BiLike, BiComment } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import LimitChar from "../LimitChar/LimitChar";
+import axios from "axios";
+
+const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
 
 const Card = (props) => {
+  const onDelete = (id) => {};
+
   return (
     <div className="card">
       <div className="img">
@@ -37,7 +42,12 @@ const Card = (props) => {
         </div>
         <div className="right flex-cc">
           <div className="i">
-            <MdDelete className="del" />
+            <MdDelete
+              className="del"
+              onClick={() => {
+                onDelete(props.id);
+              }}
+            />
           </div>
         </div>
       </div>
