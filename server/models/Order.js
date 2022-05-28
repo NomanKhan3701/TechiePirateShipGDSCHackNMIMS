@@ -7,7 +7,8 @@ const OrderSchema = new mongoose.Schema({
   OrderedBy: String,
   Items: { type: [{}], required: true },
   TotalCost: { type: Number, required: true },
-  Status: { type: String, required: true }
+  Status: { type: String, required: true },
+  Paid:{type:Boolean, required:true},
 });
 let Order;
 try {
@@ -23,6 +24,7 @@ const validate = (data) => {
     Items: Joi.array().items(Joi.object()).label("Items"),
     TotalCost: Joi.number().required().label("Total Cost"),
     Status: Joi.string().required().label("Status"),
+    Paid:Joi.boolean.required().label("Paid")
   });
   return schema.validate(data);
 };
