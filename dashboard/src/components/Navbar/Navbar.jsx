@@ -81,9 +81,7 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <AiFillHome />
-              <div className="link-content">
-                <a>Home</a>
-              </div>
+              <div className="link-content">Home</div>
             </NavLink>
             <NavLink
               to="/menu"
@@ -91,9 +89,7 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <MdMenuBook />
-              <div className="link-content">
-                <a>Menu</a>
-              </div>
+              <div className="link-content">Menu</div>
             </NavLink>
             <NavLink
               to="/order"
@@ -101,9 +97,7 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <BsFillCartCheckFill />
-              <div className="link-content">
-                <a>Order</a>
-              </div>
+              <div className="link-content">Order</div>
             </NavLink>
             <NavLink
               to="/mydish"
@@ -111,9 +105,7 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <IoMdCart />
-              <div className="link-content">
-                <a>Ingredients</a>
-              </div>
+              <div className="link-content">Ingredients</div>
             </NavLink>
             <NavLink
               to="/login"
