@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import FullScreenLoader from "./FullScreenLoader";
+import FullScreenLoader from "../../components/FullScreenLoader/FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.scss";
 

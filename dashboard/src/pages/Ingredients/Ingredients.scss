@@ -75,6 +75,7 @@
         }
 
         .info-div {
+          width: 100%;
           color: white;
           z-index: 2;
           position: absolute;
@@ -82,20 +83,29 @@
           left: 10px;
 
           svg {
-            transform: translateX(120px);
+            width: 100%;
             color: white;
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
             font-size: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
 
           .name {
+            transform: translateY(-5px);
             font-size: 30px;
             margin-bottom: 5px;
-            transform: translateY(-10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
 
           .quantity {
-            transform: translateY(-13px);
+            transform: translateY(-5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
       }

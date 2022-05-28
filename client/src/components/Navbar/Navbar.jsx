@@ -11,6 +11,13 @@ import { BsFillCartCheckFill } from "react-icons/bs";
 import { MdMenuBook } from "react-icons/md";
 
 const Navbar = () => {
+  useEffect(() => {
+    if(localStorage.getItem("token"))
+    setloggedIn(true);
+    else
+    setloggedIn(false);
+  }, [])
+  
   const [loggedIn, setloggedIn] = useState(false);
   const [toggle, setToggle] = useState(false);
 

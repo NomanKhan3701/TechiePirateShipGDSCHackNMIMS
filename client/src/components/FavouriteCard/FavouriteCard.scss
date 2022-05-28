@@ -1,57 +1,115 @@
-.post-card {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
-    min-width: 350px;
-    max-width: 400px;
-    min-height: 430px;
-    max-height: 500px;
-    border-radius: 5px;
-    overflow: hidden;
+.favourite-card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+  min-width: 350px;
+  max-width: 400px;
+  min-height: 430px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  margin: 20px;
+
+  &:hover .img img {
+    width: 120%;
+  }
+
+  @media screen and (max-width: 500px) {
+    height: 450px;
+  }
+
+  .img {
     position: relative;
-    margin: 20px;
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
 
-    @media screen and (max-width: 500px) {
-        height: 450px;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: all 0.3s ease;
     }
 
-    .image {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-
-        img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
+    .title {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      color: white;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      font-size: 30px;
+      z-index: 1;
     }
 
-    .footer {
-        position: absolute;
-        color: white;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding-left: 10px;
-        padding-bottom: 20px;
-
-        .title {
-            font-size: 2.4rem;
-            padding-bottom: 20px;
-        }
-
-        .favourite-desc {
-            font-size: 1.3rem;
-            padding-bottom: 30px;
-        }
-
-        .favourite-status {
-            font-size: 2rem;
-        }
+    &::after {
+      content: "sdfklnskd";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      background: black;
+      opacity: 0.5;
     }
+  }
+
+  .desc {
+    padding: 20px;
+    min-height: 120px;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+
+  .status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 15px;
+
+    .price {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      transform: translateY(-2px);
+    }
+
+    .status {
+      background: rgb(15, 58, 15);
+      padding: 5px 15px;
+      color: white;
+      border-radius: 5px;
+    }
+  }
+
+  .card-bottom {
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: rgb(230, 227, 227);
+
+    .i:not(last-child) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+    }
+
+    svg {
+      font-size: 21px;
+      margin-right: 5px;
+
+      &.del {
+        color: rgb(228, 46, 46);
+      }
+    }
+
+    .left {
+      margin-right: auto;
+    }
+  }
 }

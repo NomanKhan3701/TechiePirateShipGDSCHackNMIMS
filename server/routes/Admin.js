@@ -25,8 +25,8 @@ router.get("/FoodItem", GetFoodItems);
 router.delete("/FoodItem", DeleteFoodItem);
 router.post("/Specials", AddSpecial);
 router.delete("/Specials", RemoveSpecial);
-router.post("/Inventory",AddIngredient);
-router.delete("/Inventory",RemoveIngredient);
+router.post("/Inventory", AddIngredient);
+router.delete("/Inventory", RemoveIngredient);
 router.get("/Inventory", GetIngredients);
 
 module.exports = router;

@@ -30,11 +30,21 @@ const Login = () => {
     } else {
       setLoading(true);
 
-      const { data: res } = await axios.post(`${client_server_url}/Login/`, {
+      try
+      {
+        const { data: res } = await axios.post(`${client_server_url}/Login/`, {
         MobileNumber: loginData.MobileNumber,
         password: loginData.password,
       });
       localStorage.setItem("token", res.data);
+      localStorage.setItem("User",{MobileNumber: loginData.MobileNumber,})
+      setLoading(false)
+    } catch(error)
+    {
+      console.log(error);
+    }
+      localStorage.setItem("token", res.data);
+      localStorage.setItem("User",)
     }
   };
   return (

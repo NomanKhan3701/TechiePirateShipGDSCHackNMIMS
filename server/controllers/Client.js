@@ -42,12 +42,14 @@ const Login = async (req, res) => {
     let validPassword;
 
     if (!client)
-      return res.status(401).send({ message: "Invalid Email or Password" });
-
-    console.log(req.body.password);
-    console.log(client.password);
-
-    validPassword = await bcrypt.compare(req.body.password, client.password);
+      return res
+        .status(401)
+        .send({ message: "Invalid Mobile Number or Password" });
+    try {
+      validPassword = await bcrypt.compare(req.body.password, client.Password);
+    } catch (err) {
+      console.log(err);
+    }
     if (!validPassword)
       return res.status(401).send({ message: "Invalid Email or Password" });
     const token = client.generateAuthToken();
@@ -105,28 +107,52 @@ const UpdateLikes = async (req, res) => {
     const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
     const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
 
-    if (!(User && food))
+    if (!(User && food)) {
       res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
+    }
+
     if (User.LikedDishes.includes(req.body.ItemId)) {
-      Client.updateOne(
+      console.log("2heloo");
+      Client.findOneAndUpdate(
         { MobileNumber: req.body.MobileNumber },
         { $pull: { LikedDishes: req.body.ItemId } },
         function (err, raw) {
-          if (err) res.send(err);
-          res.send(raw);
+          if (err) console.log(err);
+          console.log(raw);
         }
-      );
+      ).clone();
+      food.Popularity -= 1;
+      await FoodItem.findOneAndUpdate(
+        { ItemId: food.ItemId },
+        { Popularity: food.Popularity },
+        function (err, raw) {
+          if (err) console.log(err);
+          console.log(raw);
+        }
+      ).clone();
     } else {
-      Client.updateOne(
+      console.log("1heloo");
+      await Client.findOneAndUpdate(
         { MobileNumber: req.body.MobileNumber },
         { $push: { LikedDishes: req.body.ItemId } },
         function (err, raw) {
-          if (err) res.send(err);
-          res.send(raw);
+          if (err) console.log(err);
+          console.log(raw);
         }
-      );
+      ).clone();
+      food.Popularity += 1;
+      await FoodItem.findOneAndUpdate(
+        { ItemId: food.ItemId },
+        { Popularity: food.Popularity },
+        function (err, raw) {
+          if (err) console.log(err);
+          console.log(raw);
+        }
+      ).clone();
     }
+    res.send({ Message: "Edited Succesfully" });
   } catch (error) {
+    console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
 };

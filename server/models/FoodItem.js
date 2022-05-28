@@ -9,12 +9,12 @@ const FoodItemSchema = new mongoose.Schema({
   Availability: { type: Boolean, required: true },
   Description: String,
   Image: String,
-  Popularity: Number,
-  BestTimeToEat:[String],
-  Category:String,
+  Popularity: { type: Number, default: 0 },
+  BestTimeToEat: [String],
+  Category: String,
   Cuisine: [String],
   Reviews: [String],
-  Likes:[String],
+  Likes: [String],
 });
 
 const validate = (data) => {

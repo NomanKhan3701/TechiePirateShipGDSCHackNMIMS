@@ -16,6 +16,7 @@ import MyDish from "./pages/MyDish/MyDish";
 import Favourite from "./pages/Favourite/Favourite";
 import SingleFood from "./pages/SingleFood/SingleFood";
 import Checkout from "./pages/Checkout/Checkout";
+import Bill from "./pages/Bill/Bill";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/SingleFood" element={<SingleFood />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/bill" element={<Bill />} />
       </Routes>
     </div>
   );
