@@ -87,7 +87,7 @@ const Navbar = () => {
             >
               <AiFillHome />
               <div className="link-content">
-                <a>Home</a>
+                <li>Home</li>
               </div>
             </NavLink>
             <NavLink
@@ -97,7 +97,7 @@ const Navbar = () => {
             >
               <MdMenuBook />
               <div className="link-content">
-                <a>Menu</a>
+                <li>Menu</li>
               </div>
             </NavLink>
             <NavLink
@@ -107,7 +107,7 @@ const Navbar = () => {
             >
               <IoMdCart />
               <div className="link-content">
-                <a>My Dish</a>
+                <li>My Dish</li>
               </div>
             </NavLink>
             <NavLink
@@ -117,7 +117,7 @@ const Navbar = () => {
             >
               <BsFillCartCheckFill />
               <div className="link-content">
-                <a>Order</a>
+                <li>Order</li>
               </div>
             </NavLink>
             <NavLink
@@ -127,7 +127,7 @@ const Navbar = () => {
             >
               <AiTwotoneHeart />
               <div className="link-content">
-                <a>Favourite</a>
+                <li>Favourite</li>
               </div>
             </NavLink>
             <NavLink

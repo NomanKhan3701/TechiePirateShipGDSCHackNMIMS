@@ -68,6 +68,7 @@
       font-size: 19px;
       font-weight: 700;
       color: rgb(115, 115, 115);
+      cursor: pointer;
 
       &:hover {
         color: rgb(26, 26, 26);
@@ -216,6 +217,7 @@
           border: 1px solid black;
           padding: 10px 25px;
           border-radius: 5px;
+          cursor: pointer;
 
           &:hover {
             background: rgb(224, 222, 222);
