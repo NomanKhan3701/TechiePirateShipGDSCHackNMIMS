@@ -1,5 +1,5 @@
 const { FoodItem, validate } = require("../models/FoodItem");
-const {Client}=require("../models/Client")
+const { Client } = require("../models/Client");
 
 const AddFoodItem = async (req, res) => {
   try {
@@ -20,22 +20,21 @@ const AddFoodItem = async (req, res) => {
 };
 const DeleteFoodItem = async (req, res) => {
   try {
-    item=await FoodItem.findOne({ItemId:req.body.ItemId})
-    if(item)
-    FoodItem.findOneAndDelete(
-      { ItemId: req.body.ItemId },
-      function (err, docs) {
-        if (err) {
-          console.log(err);
-        } else {
-          res.status(200).send({ message: "Deleted Food Item : ", docs });
+    item = await FoodItem.findOne({ ItemId: req.body.ItemId });
+    if (item)
+      FoodItem.findOneAndDelete(
+        { ItemId: req.body.ItemId },
+        function (err, docs) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.status(200).send({ message: "Deleted Food Item : ", docs });
+          }
         }
-      }
-    );
-    else{
-      res.status(404).send({message:"Item Not Found"})
+      );
+    else {
+      res.status(404).send({ message: "Item Not Found" });
     }
-
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -43,21 +42,23 @@ const DeleteFoodItem = async (req, res) => {
 
 const GetFoodItems = async (req, res) => {
   try {
-    if(req.body.SortBy==="Popularity")
-    {
-    const food = await FoodItem.find({}).sort({Popularity:-1});
-    res.send(food)
+    if (req.body.SortBy === "Popularity") {
+      const food = await FoodItem.find({}).sort({ Popularity: -1 });
+      res.send(food);
+    }
+    if (req.body.SortBy === "None") {
+      const food = await FoodItem.find({});
+      res.send(food);
     }
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-const UpdateFoodItems =async(req,res)=>{
+const UpdateFoodItems = async (req, res) => {
   try {
-
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
-}
+};
 
-module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems,UpdateFoodItems };
+module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems, UpdateFoodItems };
