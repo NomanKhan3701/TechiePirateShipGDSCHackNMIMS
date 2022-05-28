@@ -60,27 +60,6 @@ const GetFoodItems=async(req,res)=>{
   }
 }
 
-const GetFoodItemsPopular = async (req, res) => {
-  try { 
-      console.log("Popularity");
-      const food = await FoodItem.find({}).sort({ Popularity: -1 });
-      res.send(food);
-  } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Internal Server Error" });
-  }
-};
-const GetFoodItemsAll= async(req,res)=>{
-  console.log(req.query)
-try {
-  console.log("All");
-  const food = await FoodItem.find({});
-  res.send(food);
-} catch (error) {
-  console.log(error);
-  res.status(500).send({ message: "Internal Server Error" });
-}
-}
 const UpdateFoodItems = async (req, res) => {
   try {
   } catch (error) {
