@@ -34,6 +34,7 @@ const Menu = () => {
         {menuData.map((item) => {
           return (
             <Card
+              id={item.ItemId}
               img={item.Image}
               name={item.ItemName}
               desc={item.Description}

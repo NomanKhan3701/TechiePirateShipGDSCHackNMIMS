@@ -10,10 +10,13 @@ const admin = require("./routes/Admin");
 
 dotenv.config();
 const PORT = process.env.PORT || 8000;
+const corsOptions={
+  "origin":"*",
+}
 
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 
 /* All Routes here */
 // app.use("/api/user", userRoute);

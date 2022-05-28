@@ -19,9 +19,8 @@ const AddFoodItem = async (req, res) => {
 };
 const DeleteFoodItem = async (req, res) => {
   try {
-    const { error } = validate(req.body);
-    if (error)
-      return res.status(400).send({ message: error.details[0].message });
+    item=await FoodItem.findOne({ItemId:req.body.ItemId})
+    if(item)
     FoodItem.findOneAndDelete(
       { ItemId: req.body.ItemId },
       function (err, docs) {
@@ -32,6 +31,10 @@ const DeleteFoodItem = async (req, res) => {
         }
       }
     );
+    else{
+      res.status(404).send({message:"Item Not Found"})
+    }
+
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -46,7 +49,7 @@ const GetFoodItems = async (req, res) => {
   }
 };
 const UpdateFoodItems =async(req,res)=>{
- 
+  
 }
 
 module.exports = { AddFoodItem, DeleteFoodItem, GetFoodItems,UpdateFoodItems };
