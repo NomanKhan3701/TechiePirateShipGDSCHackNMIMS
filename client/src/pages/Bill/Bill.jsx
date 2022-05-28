@@ -3,7 +3,7 @@ import "./Bill.scss";
 
 const Bill = () => {
   return (
-    <div className="bill-container">
+    <div className="bill-container-client">
       <h1>Bill</h1>
       <div className="bill">
         <div className="one">
