@@ -7,7 +7,7 @@ const clientSchema = new mongoose.Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   MobileNumber: { type: String, required: true },
-  password: { type: String, required: true },
+  Password: { type: String, required: true },
   prevOrders:[String],
   Favourites:[String],
   LikedDishes:[String],
@@ -30,7 +30,11 @@ const validate = (data) => {
       .pattern(/^[0-9]+$/)
       .required()
       .label("Mobile Number"),
-    password: passwordComplexity().required().label("Password"),
+    Password: passwordComplexity().required().label("Password"),
+    prevOrders:Joi.array().items(Joi.string()).label("Prev Orders"),
+    Favourites:Joi.array().items(Joi.string()).label("Favourites"),
+    LikedDishes:Joi.array().items(Joi.string()).label("LikedDishes"),
+
   });
   return schema.validate(data);
 };
