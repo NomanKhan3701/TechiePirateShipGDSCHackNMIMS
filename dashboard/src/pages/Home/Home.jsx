@@ -12,7 +12,7 @@ const Home = () => {
   const handleSubmit = () => {
     axios
       .post(`${admin_server_url}/Specials`, {
-        ItemName: itemName,
+        SpecialItem: itemName,
       })
       .then((res) => {
         console.log(res);
