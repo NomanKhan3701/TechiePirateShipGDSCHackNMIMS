@@ -38,10 +38,10 @@ const Login = () => {
       });
       localStorage.setItem("token", res.data);
       localStorage.setItem("User",{MobileNumber: loginData.MobileNumber,})
-      
+      setLoading(false)
     } catch(error)
     {
-
+      console.log(error);
     }
       localStorage.setItem("token", res.data);
       localStorage.setItem("User",)
