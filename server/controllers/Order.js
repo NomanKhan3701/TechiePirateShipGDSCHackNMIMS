@@ -1,12 +1,13 @@
 const { Order, validate } = require("../models/Order");
-
+const generateUniqueId = require("generate-unique-id");
 const AddOrder = async (req, res) => {
   try {
-    const { error } = validate(req.body);
+    const id = generateUniqueId({length:15});
+    const { error } = validate({...req.body,OrderId:id});
     if (error)
       return res.status(400).send({ message: error.details[0].message });
     //   const order = await Order.findOne({ OrderId: req.body.OrderId,OrderedBy:req.body.OrderedBy,Status:"Ongoing" });
-    await new Order(req.body).save();
+    await new Order({...req.body,OrderId:id}).save();
     res.status(201).send({ message: "Order Placed successfully" });
   } catch (error) {
     console.log(error);
