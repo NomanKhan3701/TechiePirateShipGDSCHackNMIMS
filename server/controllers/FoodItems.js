@@ -3,13 +3,14 @@ const { Client } = require("../models/Client");
 
 const AddFoodItem = async (req, res) => {
   try {
-     const { error } = validate(req.body);
-     if (error)
+    const { error } = validate(req.body);
+    if (error)
       return res.status(400).send({ message: error.details[0].message });
-    const food = await FoodItem.findOne({ItemId: req.body.ItemId });
-    if(food)
-    {
-      return res.status(409).send({ message: "Item with given Id already exists!" });
+    const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
+    if (food) {
+      return res
+        .status(409)
+        .send({ message: "Item with given Id already exists!" });
     }
 
     await new FoodItem(req.body).save();
@@ -49,6 +50,13 @@ const GetFoodItems = async (req, res) => {
     } else if (SortBy === "Popularity") {
       const food = await FoodItem.find({}).sort({ Popularity: -1 });
       res.send(food);
+    } else if (SortBy === "Custom") {
+      const items = await FoodItem.find({
+        ItemId: {
+          $in: req.query.Items,
+        },
+      });
+      res.send(items);
     }
   } catch (error) {
     console.log(error);

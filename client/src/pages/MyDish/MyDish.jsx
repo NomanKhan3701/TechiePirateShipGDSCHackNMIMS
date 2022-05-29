@@ -9,20 +9,45 @@ const client_server_url = import.meta.env.VITE_APP_CLIENT_SERVER_URL;
 
 const MyDish = () => {
   const [dish, setDish] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const gst = 5;
   const navigate = useNavigate();
 
   useEffect(() => {
     var cartItems = JSON.parse(localStorage.getItem("cart"));
     if (cartItems === null) cartItems = [];
-    var ItemId = cartItems.map((item) => {
-      return item.name;
-    });
+    if (!cartItems == []) {
+      var ItemId = cartItems.map((item) => {
+        return item.name;
+      });
+      var Quantity = cartItems.map((item) => {
+        return item.quantity;
+      });
+      var i = -1;
+      axios
+        .get(`${client_server_url}/FoodItem`, {
+          params: { SortBy: "Custom", Items: ItemId },
+        })
+        .then((res) => {
+          var currDish = res.data.map((dish) => {
+            i++;
+            return {
+              name: dish.ItemId,
+              price: dish.Price,
+              quantity: Quantity[i],
+              img: dish.Image,
+            };
+          });
+          setDish(currDish);
+        })
+        .catch((e) => console.log(e));
+    } else {
+      setDish([]);
+    }
 
-    axios
-      .get(`${client_server_url}/FoodItem`, {
-        params: { SortBy: "Custom", ItemId: ItemId },
-      })
-      .then((res) => console.log(res));
+    var price = 0;
+    dish.map((d) => (price = price + d.quantity * d.price));
+    setTotalPrice(price);
 
     function checkCartData() {
       const item = JSON.parse(localStorage.getItem("cart"));
@@ -48,10 +73,11 @@ const MyDish = () => {
     });
     console.log(ItemId, Quantity);
     axios
-      .post(`${client_server_url}/`, {
-        ItemId: ItemId,
+      .post(`${client_server_url}/Order`, {
+        Items: ItemId,
         Quantity: Quantity,
         OrderedBy: MobileNumber,
+        TotalCost: totalPrice + (gst * totalPrice) / 100,
       })
       .then((res) => console.log(res));
     navigate("/order");
@@ -65,9 +91,10 @@ const MyDish = () => {
             return (
               <CartCard
                 key={index}
-                img={food1}
+                img={data.img}
                 name={data.name}
                 quantity={data.quantity}
+                price={data.price}
                 setDish={setDish}
               />
             );
@@ -80,14 +107,16 @@ const MyDish = () => {
         <h1>Price</h1>
         <div className="total">
           <span>Total Price </span>
-          <span>$600</span>
+          <span>${totalPrice}</span>
         </div>
         <div className="gst">
           <span>GST</span>
-          <span>$10</span>
+          <span>${(gst * totalPrice) / 100}</span>
         </div>
         <div onClick={checkout}>
-          <div className="btn">Checkout | $610</div>
+          <div className="btn">
+            Checkout | ${totalPrice + (gst * totalPrice) / 100}
+          </div>
         </div>
       </div>
     </div>
