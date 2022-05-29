@@ -7,10 +7,11 @@ const AddFoodItem = async (req, res) => {
     if (error)
       return res.status(400).send({ message: error.details[0].message });
     const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
-    if (food)
+    if (food) {
       return res
         .status(409)
         .send({ message: "Item with given Id already exists!" });
+    }
 
     await new FoodItem(req.body).save();
     res.status(201).send({ message: "Item Added successfully" });
@@ -40,25 +41,21 @@ const DeleteFoodItem = async (req, res) => {
   }
 };
 
-const GetFoodItems=async(req,res)=>{
-  const SortBy=req.query.SortBy
+const GetFoodItems = async (req, res) => {
+  const SortBy = req.query.SortBy;
   try {
-    if(SortBy==="None")
-    {
+    if (SortBy === "None") {
       const food = await FoodItem.find({});
       res.send(food);
+    } else if (SortBy === "Popularity") {
+      const food = await FoodItem.find({}).sort({ Popularity: -1 });
+      res.send(food);
     }
-    else if(SortBy==="Popularity")
-    {
-       const food = await FoodItem.find({}).sort({ Popularity: -1 });
-       res.send(food);
-    }
-   
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
-}
+};
 
 const UpdateFoodItems = async (req, res) => {
   try {

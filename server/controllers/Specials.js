@@ -1,11 +1,13 @@
 const { Specials, validate } = require("../models/Specials");
-
+const { FoodItem } = require("../models/FoodItem");
 const AddSpecial = async (req, res) => {
   try {
     const { error } = validate(req.body);
     if (error)
       return res.status(400).send({ message: error.details[0].message });
-    const Special = await Specials.findOne({ SpecialItem: req.body.ItemId });
+    const Special = await Specials.findOne({
+      SpecialItem: req.body.SpecialItem,
+    });
     if (Special)
       return res
         .status(409)
@@ -18,7 +20,7 @@ const AddSpecial = async (req, res) => {
   }
 };
 const RemoveSpecial = async (req, res) => {
-  try{
+  try {
     const Special = await Specials.findOne({ SpecialItem: req.body.ItemId });
     if (!Special)
       return res
@@ -40,10 +42,19 @@ const RemoveSpecial = async (req, res) => {
 };
 const GetSpecials = async (req, res) => {
   try {
-    const specials = await Specials.find({});
-    res.status(200).send(specials);
+    let specials = await Specials.find({}).select(Specials.SpecialItem);
+    specials = specials.map((spec) => {
+      return spec.SpecialItem;
+    });
+    console.log(specials);
+    const Spcls = await FoodItem.find({
+      ItemId: {
+        $in: specials,
+      },
+    });
+    res.status(200).send(Spcls);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
 };

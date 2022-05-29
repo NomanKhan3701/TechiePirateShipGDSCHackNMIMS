@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,9 +11,10 @@ const client_server_url = import.meta.env.VITE_APP_CLIENT_SERVER_URL;
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
-    MobileNumber: null,
+    MobileNumber: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <FullScreenLoader />;
@@ -46,6 +48,7 @@ const Login = () => {
       localStorage.setItem("User", { MobileNumber: loginData.MobileNumber });
     }
   };
+
   return (
     <div className="login-container">
       <ToastContainer></ToastContainer>

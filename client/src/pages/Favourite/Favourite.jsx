@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import FavouriteCard from "../../components/FavouriteCard/FavouriteCard";
 import food1 from "../../assets/food1.jpg";
 import "./Favourite.scss";
+import axios from "axios";
 
 const Favourite = () => {
+  const [favourite, getFavourite] = useState([]);
+
+  useEffect(()=> {
+    axios.get('/')
+  },[])
+
   return (
     <div className="menu">
       <div className="card-container">

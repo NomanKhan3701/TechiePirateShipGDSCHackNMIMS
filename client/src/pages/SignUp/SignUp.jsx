@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router";
 import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./SignUp.scss";
@@ -16,6 +17,7 @@ const SignUp = () => {
     password: "",
     cnfrmPassword: "",
   });
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <FullScreenLoader />;
@@ -63,12 +65,14 @@ const SignUp = () => {
           firstName: loginData.firstname,
           lastName: loginData.lastname,
           MobileNumber: loginData.MobileNumber,
-          password: loginData.password,
+          Password: loginData.password,
         })
         .then((response) => {
           setLoading(false);
           console.log(response);
         });
+
+      navigate("/login");
     }
   };
   return (

@@ -4,10 +4,12 @@ import "./AddItem.scss";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 const admin_server_url = import.meta.env.VITE_APP_ADMIN_SERVER_URL;
+import { useNavigate } from "react-router";
 
 const AddItem = () => {
   const [files, setFiles] = useState([]);
   const [prevImg, setPrevImg] = useState();
+  const navigate = useNavigate();
   const categoryData = ["Veg", "Non-Veg", "Vegan"];
   const availibilityData = ["Available", "Not-Available"];
   const cuisineData = ["American", "Indian", "Chineese"];
@@ -68,6 +70,20 @@ const AddItem = () => {
         position: "top-center",
       });
     } else {
+      console.log({
+        ItemId: foodData.ItemName,
+        Image: prevImg,
+        Price: Number(foodData.Price),
+        Cuisine: [foodData.Cuisine],
+        BestTimeToEat: [foodData.BestTimeToEat],
+        Ingredients: Array.isArray(foodData.Ingredients)
+          ? foodData.Ingredients
+          : foodData.Ingredients.split(","),
+        ItemName: foodData.ItemName,
+        Category: foodData.Category,
+        Availability: foodData.Availability,
+        Description: foodData.Description,
+      });
       axios
         .post(`${admin_server_url}/FoodItem`, {
           ItemId: foodData.ItemName,

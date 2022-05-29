@@ -9,7 +9,11 @@ const {
   AdminLogin,
   TestAdmin,
 } = require("../controllers/AdminData");
-const { AddSpecial, RemoveSpecial } = require("../controllers/Specials");
+const {
+  AddSpecial,
+  RemoveSpecial,
+  GetSpecials,
+} = require("../controllers/Specials");
 const {
   AddIngredient,
   RemoveIngredient,
@@ -25,6 +29,7 @@ router.get("/FoodItem", GetFoodItems);
 router.delete("/FoodItem", DeleteFoodItem);
 router.post("/Specials", AddSpecial);
 router.delete("/Specials", RemoveSpecial);
+router.get("/Specials", GetSpecials);
 router.post("/Inventory", AddIngredient);
 router.delete("/Inventory", RemoveIngredient);
 router.get("/Inventory", GetIngredients);
