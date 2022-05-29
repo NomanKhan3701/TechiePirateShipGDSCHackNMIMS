@@ -47,7 +47,7 @@ const Card = (props) => {
       </div>
 
       <div className="desc">
-        <LimitChar word={props.desc} limit={250} />
+        <LimitChar word={props.desc} limit={150} />
       </div>
       <div className="status">
         <div className="price">Price - ${props.price}</div>
