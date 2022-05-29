@@ -44,20 +44,19 @@ const DeleteFoodItem = async (req, res) => {
 const GetFoodItems = async (req, res) => {
   const SortBy = req.query.SortBy;
   try {
-    if (SortBy === "Custom") {
-      const items = await FoodItem.find({
-        ItemId: {
-          $in: req.body.Items,
-        },
-      });
-      res.send(items);
-    }
     if (SortBy === "None") {
       const food = await FoodItem.find({});
       res.send(food);
     } else if (SortBy === "Popularity") {
       const food = await FoodItem.find({}).sort({ Popularity: -1 });
       res.send(food);
+    } else if (SortBy === "Custom") {
+      const items = await FoodItem.find({
+        ItemId: {
+          $in: req.query.Items,
+        },
+      });
+      res.send(items);
     }
   } catch (error) {
     console.log(error);

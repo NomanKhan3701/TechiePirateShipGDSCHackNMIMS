@@ -44,6 +44,7 @@ const Login = async (req, res) => {
       return res
         .status(401)
         .send({ message: "Invalid Mobile Number or Password" });
+
     try {
       validPassword = await bcrypt.compare(req.body.password, client.Password);
     } catch (err) {
@@ -100,7 +101,6 @@ const UpdateFavourites = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-
 
 const UpdateLikes = async (req, res) => {
   try {

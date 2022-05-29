@@ -19,6 +19,7 @@ const {
   RemoveIngredient,
   GetIngredients,
 } = require("../controllers/Inventory");
+const { SetOrder } = require("../controllers/Order");
 
 router.post("/Test/", TestAdmin);
 router.get("/Test/", (req, res) => {});
@@ -34,5 +35,6 @@ router.get("/Specials", GetSpecials);
 router.post("/Inventory", AddIngredient);
 router.delete("/Inventory", RemoveIngredient);
 router.get("/Inventory", GetIngredients);
+router.patch("/Order", SetOrder);
 
 module.exports = router;

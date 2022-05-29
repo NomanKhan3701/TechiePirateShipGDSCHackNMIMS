@@ -4,6 +4,7 @@ import { RiSubtractLine, RiAddLine } from "react-icons/ri";
 import "./CartCard.scss";
 
 const CartCard = (props) => {
+  
   const handleQty = (type) => {
     var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     if (type === "increase") {
@@ -52,7 +53,7 @@ const CartCard = (props) => {
         </div>
         <div className="right">
           <h2 className="name">{props.name}</h2>
-          <h3 className="price">Price - $200</h3>
+          <h3 className="price">Price - ${props.price}</h3>
         </div>
       </div>
       <div className="bottom">

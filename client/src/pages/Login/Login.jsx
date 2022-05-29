@@ -41,11 +41,12 @@ const Login = () => {
         localStorage.setItem("token", res.data);
         localStorage.setItem("User", { MobileNumber: loginData.MobileNumber });
         setLoading(false);
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
-      localStorage.setItem("token", res.data);
-      localStorage.setItem("User", { MobileNumber: loginData.MobileNumber });
+      navigate("/");
+      window.location.reload(false);
     }
   };
 
