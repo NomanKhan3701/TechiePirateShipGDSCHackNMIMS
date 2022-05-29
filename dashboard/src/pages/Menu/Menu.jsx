@@ -13,17 +13,12 @@ const Menu = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`${admin_server_url}/FoodItem`, { params: { SortBy: "None" } })
-      .then((response) => {
-        setLoading(false);
-        console.log(response);
-        setMenuData(response.data);
-        console.log(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    axios.get(`${admin_server_url}/FoodItem`,{params:{SortBy:"None"}}).then((response) => {
+     
+      setLoading(false);
+      setMenuData(response.data);
+      console.log(response.data);
+    });
   }, []);
 
   if (isLoading) {

@@ -15,6 +15,7 @@ const AddSpecial = async (req, res) => {
     await new Specials(req.body).save();
     res.status(201).send({ message: "Item Added successfully" });
   } catch (error) {
+
     console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
