@@ -1,4 +1,5 @@
 const { FoodItem, validate } = require("../models/FoodItem");
+const {Client} = require("../models/Client")
 const { Client } = require("../models/Client");
 
 const AddFoodItem = async (req, res) => {
@@ -32,6 +33,15 @@ const DeleteFoodItem = async (req, res) => {
           }
         }
       );
+         Client.updateOne(
+        { },
+        { $pull: { Favourites: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    
     else {
       res.status(404).send({ message: "Item Not Found" });
     }
