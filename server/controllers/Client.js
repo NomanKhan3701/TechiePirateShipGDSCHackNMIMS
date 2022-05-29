@@ -37,16 +37,14 @@ const Login = async (req, res) => {
       MobileNumber: req.body.MobileNumber,
     });
     if (!client)
-      return res.status(401).send({ message: "Invalid Mobile Number or Password" });
-     let validPassword
-    try{
-      validPassword = await bcrypt.compare(
-      req.body.password,
-      client.Password
-    );
-    } 
-    catch(err){
-     console.log(err);
+      return res
+        .status(401)
+        .send({ message: "Invalid Mobile Number or Password" });
+    let validPassword;
+    try {
+      validPassword = await bcrypt.compare(req.body.password, client.Password);
+    } catch (err) {
+      console.log(err);
     }
     if (!validPassword)
       return res.status(401).send({ message: "Invalid Email or Password" });
@@ -99,7 +97,6 @@ const UpdateFavourites = async (req, res) => {
   }
 };
 
-
 const UpdateLikes = async (req, res) => {
   try {
     const User = await Client.findOne({ MobileNumber: req.body.MobileNumber });
@@ -108,7 +105,7 @@ const UpdateLikes = async (req, res) => {
     if (!(User && food)) {
       res.status(401).send({ message: "Invalid MobileNumber or Food Id" });
     }
-    
+
     if (User.LikedDishes.includes(req.body.ItemId)) {
       console.log("2heloo");
       Client.findOneAndUpdate(
@@ -120,14 +117,14 @@ const UpdateLikes = async (req, res) => {
         }
       ).clone();
       food.Popularity -= 1;
-       await FoodItem.findOneAndUpdate(
-         { ItemId: food.ItemId },
-         { Popularity: food.Popularity },
-         function (err, raw) {
-           if (err) console.log(err);
-           console.log(raw);
-         }
-       ).clone();
+      await FoodItem.findOneAndUpdate(
+        { ItemId: food.ItemId },
+        { Popularity: food.Popularity },
+        function (err, raw) {
+          if (err) console.log(err);
+          console.log(raw);
+        }
+      ).clone();
     } else {
       console.log("1heloo");
       await Client.findOneAndUpdate(
@@ -139,15 +136,15 @@ const UpdateLikes = async (req, res) => {
         }
       ).clone();
       food.Popularity += 1;
-       await FoodItem.findOneAndUpdate(
-         { ItemId: food.ItemId },
-         { Popularity: food.Popularity },
-         function (err, raw) {
-           if (err) console.log(err);
-           console.log(raw);
-         }
-       ).clone();
-    };
+      await FoodItem.findOneAndUpdate(
+        { ItemId: food.ItemId },
+        { Popularity: food.Popularity },
+        function (err, raw) {
+          if (err) console.log(err);
+          console.log(raw);
+        }
+      ).clone();
+    }
     res.send({ Message: "Edited Succesfully" });
   } catch (error) {
     console.log(error);

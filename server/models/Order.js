@@ -9,8 +9,9 @@ const OrderSchema = new mongoose.Schema({
   Quantity:{type:[],required:true},
   TotalCost: { type: Number, required: true },
   Status: { type: String, required: true },
-  Paid:{type:Boolean, required:true,default:false},
-  OrderType:{type:String,required:true,default:"EatHere"},
+  Paid:{type:Boolean,default:false},
+  OrderType:{type:String,default:"EatHere"},
+  OrderDate:{type:Date}
 });
 let Order;
 try {
@@ -18,17 +19,17 @@ try {
 } catch (error) {
   Order = mongoose.model("Order", OrderSchema)
 }
-
+ 
 const validate = (data) => {
   const schema = Joi.object({
     OrderId: Joi.string().required().label("Order Id"),
     OrderedBy: Joi.string().required().label("OrderedBy"),
     Items: Joi.array().items(Joi.string()).label("Items"),
-    Quantity:Joi.array().items(Joi.Number()).label("Quantity"),
+    Quantity:Joi.array().items(Joi.number()).label("Quantity"),
     TotalCost: Joi.number().required().label("Total Cost"),
     Status: Joi.string().required().label("Status"),
-    OrderType: Joi.string().required().label("Order Type"),
-    Paid: Joi.boolean.required().label("Paid"),
+    OrderType:Joi.string().label("Order Type"),
+    Paid:Joi.boolean().label("Paid")
   });
   return schema.validate(data);
 };

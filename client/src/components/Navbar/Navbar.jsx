@@ -18,10 +18,22 @@ const Navbar = () => {
   useEffect(() => {
     if (localStorage.getItem("token")) setloggedIn(true);
     else setloggedIn(false);
+
+    function checkLoggedInData() {
+      const item = JSON.parse(localStorage.getItem("token"));
+      if (item) {
+        setloggedIn(true);
+      }
+    }
+    window.addEventListener("token", checkLoggedInData);
+    return () => {
+      window.removeEventListener("token", checkLoggedInData);
+    };
   }, []);
 
   const logout = () => {
     localStorage.removeItem("token");
+    setloggedIn(false);
     navigate("/");
   };
 

@@ -40,9 +40,8 @@ const Menu = () => {
       .get(`${client_server_url}/FoodItem`, { params: { SortBy: "None" } })
       .then((response) => {
         setLoading(false);
-        console.log(response);
+
         setMenuData(response.data);
-        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);

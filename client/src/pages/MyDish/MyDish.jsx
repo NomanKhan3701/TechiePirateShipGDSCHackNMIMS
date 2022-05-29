@@ -14,6 +14,12 @@ const MyDish = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    var price = 0;
+    dish.map((d) => (price = price + d.quantity * d.price));
+    setTotalPrice(price);
+  }, [dish]);
+
+  useEffect(() => {
     var cartItems = JSON.parse(localStorage.getItem("cart"));
     if (cartItems === null) cartItems = [];
     if (!cartItems == []) {
@@ -45,10 +51,6 @@ const MyDish = () => {
       setDish([]);
     }
 
-    var price = 0;
-    dish.map((d) => (price = price + d.quantity * d.price));
-    setTotalPrice(price);
-
     function checkCartData() {
       const item = JSON.parse(localStorage.getItem("cart"));
       if (item) {
@@ -64,6 +66,10 @@ const MyDish = () => {
   const checkout = () => {
     var cartItems = JSON.parse(localStorage.getItem("cart"));
     var MobileNumber = JSON.parse(localStorage.getItem("User"));
+    if (localStorage.getItem("token") == null) {
+      alert("Please Login before checkout");
+      return;
+    }
     if (cartItems === null) cartItems = [];
     var ItemId = cartItems.map((item) => {
       return item.name;
@@ -71,7 +77,12 @@ const MyDish = () => {
     var Quantity = cartItems.map((item) => {
       return item.quantity;
     });
-    console.log(ItemId, Quantity);
+    console.log({
+      Items: ItemId,
+      Quantity: Quantity,
+      OrderedBy: String(MobileNumber),
+      TotalCost: totalPrice + (gst * totalPrice) / 100,
+    });
     axios
       .post(`${client_server_url}/Order`, {
         Items: ItemId,
