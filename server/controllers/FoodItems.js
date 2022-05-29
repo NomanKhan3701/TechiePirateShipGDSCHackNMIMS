@@ -43,11 +43,11 @@ const DeleteFoodItem = async (req, res) => {
 const GetFoodItems=async(req,res)=>{
   const SortBy=req.query.SortBy
   try {
-    if(SortBy="Custom")
+    if(SortBy==="Custom")
     {
        const items = await FoodItem.find({
          ItemId: {
-           $in: req.body.Items,
+           $in: req.query.Items,
          },
        });
        res.send(items) 

@@ -4,14 +4,9 @@ const {FoodItem}= require("../models/FoodItem")
 const AddOrder = async (req, res) => {
   try {
     const id = generateUniqueId({length:15});
-   const items = await FoodItem.find({
-     ItemId: {
-       $in: req.body.Items,
-     },
-   });
    console.log(items)
    
-    const { error } = validate({...req.body,OrderId:id});
+    const { error } = validate({...req.body,OrderId:id,Status:"Ongoing"});
     if (error)
       return res.status(400).send({ message: error.details[0].message });
     //   const order = await Order.findOne({ OrderId: req.body.OrderId,OrderedBy:req.body.OrderedBy,Status:"Ongoing" });
