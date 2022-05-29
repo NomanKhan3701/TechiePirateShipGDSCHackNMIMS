@@ -1,6 +1,7 @@
 const { Order, validate } = require("../models/Order");
 const generateUniqueId = require("generate-unique-id");
-const { FoodItem } = require("../models/FoodItem");
+const {FoodItem}= require("../models/FoodItem")
+const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY);
 const AddOrder = async (req, res) => {
   try {
     const id = generateUniqueId({ length: 15 });
@@ -109,17 +110,40 @@ const TerminateOrder = async (req, res) => {
 };
 const MakePayment=async(req,res)=>{
   try {
-    console.log(req.body.Items)
    const Food= await FoodItem.find({ItemId: {
       $in: req.body.Items,
    }});
    Prices = Food.map((food) => {
      return food.Price;
    });
-   res.status(200).send(Prices)
+
+   try {
+     const session = await stripe.checkout.sessions.create({
+       payment_method_types: ["card"],
+       mode: "payment",
+       line_items: req.body.Items.map((item,key) => {
+         return {
+           price_data: {
+             currency: "inr",
+             product_data: {
+               name: item.ItemId,
+             },
+             unit_amount:Prices[key]*100,
+           },
+           quantity: req.body.Quantity[key],
+         };
+       }),
+       success_url: `${process.env.CLIENT_URL}/success.html`,
+       cancel_url: `${process.env.CLIENT_URL}/cancel.html`,
+     });
+     res.json({ url: session.url });
+   } catch (e) {
+     res.status(500).json({ error: e.message });
+   }
+   
    // req.Items ->ItemID
    //req.Quantity ->Quantites
-   //req.Price ->Price 
+   //Prices ->Price 
   } catch (error) {
      res.status(500).send({ message: "Internal Server Error" });
   }
