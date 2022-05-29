@@ -36,5 +36,4 @@ router.post("/Inventory", AddIngredient);
 router.delete("/Inventory", RemoveIngredient);
 router.get("/Inventory", GetIngredients);
 router.patch("/Order", SetOrder);
-
 module.exports = router;

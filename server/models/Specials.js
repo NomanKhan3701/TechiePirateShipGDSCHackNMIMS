@@ -8,6 +8,7 @@ const SpecialsSchema = new mongoose.Schema({
 const validate = (data) => {
   const schema = Joi.object({
     SpecialItem: Joi.string().label("Specials"),
+    
   });
   return schema.validate(data);
 };

@@ -11,6 +11,7 @@ const {
   GetOrders,
   SetOrder,
   TerminateOrder,
+  MakePayment
 } = require("../controllers/Order");
 const { GetSpecials } = require("../controllers/Specials");
 const {GetFavourites}=require("../controllers/Favourites")
@@ -31,6 +32,7 @@ router.get("/Order", GetOrders);
 router.patch("/Order", SetOrder);
 router.patch("/Order/Terminate", TerminateOrder);
 router.get("/Specials", GetSpecials);
+router.post("/Order/Payment",MakePayment);
 router.get("/Favourites",GetFavourites);
 
 module.exports = router;
