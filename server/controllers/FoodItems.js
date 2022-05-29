@@ -3,21 +3,14 @@ const { Client } = require("../models/Client");
 
 const AddFoodItem = async (req, res) => {
   try {
-     const { error } = validate(req.body);
-     if (error)
+    const { error } = validate(req.body);
+    if (error)
       return res.status(400).send({ message: error.details[0].message });
-<<<<<<< HEAD
     const food = await FoodItem.findOne({ ItemId: req.body.ItemId });
     if (food) {
       return res
         .status(409)
         .send({ message: "Item with given Id already exists!" });
-=======
-    const food = await FoodItem.findOne({ItemId: req.body.ItemId });
-    if(food)
-    {
-      return res.status(409).send({ message: "Item with given Id already exists!" });
->>>>>>> 44cc91e7fe7020715f13c02524da153be5b130cb
     }
 
     await new FoodItem(req.body).save();
@@ -51,21 +44,15 @@ const DeleteFoodItem = async (req, res) => {
 const GetFoodItems = async (req, res) => {
   const SortBy = req.query.SortBy;
   try {
-<<<<<<< HEAD
-    if (SortBy === "None") {
-=======
-    if(SortBy="Custom")
-    {
-       const items = await FoodItem.find({
-         ItemId: {
-           $in: req.body.Items,
-         },
-       });
-       res.send(items) 
+    if (SortBy === "Custom") {
+      const items = await FoodItem.find({
+        ItemId: {
+          $in: req.body.Items,
+        },
+      });
+      res.send(items);
     }
-    if(SortBy==="None")
-    {
->>>>>>> 2345712963138fc27dd82ba39e184bd851515968
+    if (SortBy === "None") {
       const food = await FoodItem.find({});
       res.send(food);
     } else if (SortBy === "Popularity") {

@@ -15,9 +15,14 @@
 
   .card-container {
     width: 900px;
+    min-height: calc(100vh - 140px);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    h1 {
+      margin: auto;
+    }
   }
 
   .bill-container {

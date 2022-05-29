@@ -1,11 +1,6 @@
 const { Specials, validate } = require("../models/Specials");
-<<<<<<< HEAD
 const { FoodItem } = require("../models/FoodItem");
 const AddSpecial = async (req, res) => {
-=======
-const{FoodItem}=require("../models/FoodItem")
-const   AddSpecial = async (req, res) => {
->>>>>>> 44cc91e7fe7020715f13c02524da153be5b130cb
   try {
     const { error } = validate(req.body);
     if (error)
@@ -20,7 +15,6 @@ const   AddSpecial = async (req, res) => {
     await new Specials(req.body).save();
     res.status(201).send({ message: "Item Added successfully" });
   } catch (error) {
-
     console.log(error);
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -49,15 +43,10 @@ const RemoveSpecial = async (req, res) => {
 const GetSpecials = async (req, res) => {
   try {
     let specials = await Specials.find({}).select(Specials.SpecialItem);
-<<<<<<< HEAD
     specials = specials.map((spec) => {
       return spec.SpecialItem;
     });
     console.log(specials);
-=======
-    specials=specials.map(spec=>{return spec.SpecialItem})
-    console.log(specials)
->>>>>>> 44cc91e7fe7020715f13c02524da153be5b130cb
     const Spcls = await FoodItem.find({
       ItemId: {
         $in: specials,
