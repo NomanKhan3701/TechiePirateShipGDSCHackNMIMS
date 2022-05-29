@@ -15,6 +15,7 @@ import Order, {
 } from "./pages/Order/Order";
 import Signup from "./pages/Signup/Signup";
 import SingleIngredient from "./pages/SingleIngredient/SingleIngredient";
+import CreateEmployee from "./pages/CreateEmployee/CreateEmployee";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/additemtomenu" element={<AddItem />} />
         <Route path="/singleingredient" element={<SingleIngredient />} />
         <Route path="/addingredient" element={<AddIngredient />} />
+        <Route path="/createemployee" element={<CreateEmployee />} />
       </Routes>
     </div>
   );

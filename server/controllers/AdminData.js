@@ -2,12 +2,12 @@ const { Admin, validate } = require("../models/Admin");
 const generator = require("generate-password");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
-const Joi=require('joi')
+const Joi = require("joi");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "varun.koranne@spit.ac.in",
-    pass: "",
+    user: "shreyash.dhamane@spit.ac.in",
+    pass: "Shreyash22mar",
   },
 });
 
@@ -22,7 +22,7 @@ const validateLogin = (data) => {
 const TestAdmin = async (req, res) => {
   try {
     var mailOptions = {
-      from: "varun.koranne@spit.ac.in",
+      from: "shreyash.dhamane@spit.ac.in",
       to: req.body.Email,
       subject: req.body.subject,
       text: req.body.txt,
@@ -41,11 +41,8 @@ const TestAdmin = async (req, res) => {
 
 const CreateEmployee = async (req, res) => {
   try {
-    const { error } = validate(req.body);
-    if (error)
-      return res.status(400).send({ message: error.details[0].message });
     const admin = await Admin.findOne({
-      Aadhar: req.body.Aadhar,
+      Aadhaar: req.body.Aadhaar,
     });
     if (admin)
       return res
