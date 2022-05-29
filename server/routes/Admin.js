@@ -27,6 +27,7 @@ router.post("/Login", AdminLogin);
 router.post("/FoodItem", AddFoodItem);
 router.get("/FoodItem", GetFoodItems);
 router.delete("/FoodItem", DeleteFoodItem);
+router.get("/Specials", GetSpecials);
 router.post("/Specials", AddSpecial);
 router.delete("/Specials", RemoveSpecial);
 router.get("/Specials", GetSpecials);

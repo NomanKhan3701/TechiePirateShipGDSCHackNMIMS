@@ -12,7 +12,14 @@ import { MdMenuBook } from "react-icons/md";
 const Navbar = () => {
   const [loggedIn, setloggedIn] = useState(false);
   const [toggle, setToggle] = useState(false);
-
+  useEffect(() => {
+    
+  if(localStorage.getItem("token"))
+    setloggedIn(true);
+    else
+    setloggedIn(false);
+  }, [])
+  
   const navLinkStyle = ({ isActive }) => {
     return {
       color: isActive ? "rgb(26, 26, 26)" : "rgb(115, 115, 115)",

@@ -13,6 +13,7 @@ const Menu = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
+<<<<<<< HEAD
     axios
       .get(`${admin_server_url}/FoodItem`, { params: { SortBy: "None" } })
       .then((response) => {
@@ -24,6 +25,14 @@ const Menu = () => {
       .catch((e) => {
         console.log(e);
       });
+=======
+    axios.get(`${admin_server_url}/FoodItem`,{params:{SortBy:"None"}}).then((response) => {
+     
+      setLoading(false);
+      setMenuData(response.data);
+      console.log(response.data);
+    });
+>>>>>>> 44cc91e7fe7020715f13c02524da153be5b130cb
   }, []);
 
   if (isLoading) {
