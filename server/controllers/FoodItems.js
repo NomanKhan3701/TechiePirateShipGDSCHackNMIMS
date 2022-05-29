@@ -51,7 +51,21 @@ const DeleteFoodItem = async (req, res) => {
 const GetFoodItems = async (req, res) => {
   const SortBy = req.query.SortBy;
   try {
+<<<<<<< HEAD
     if (SortBy === "None") {
+=======
+    if(SortBy="Custom")
+    {
+       const items = await FoodItem.find({
+         ItemId: {
+           $in: req.body.Items,
+         },
+       });
+       res.send(items) 
+    }
+    if(SortBy==="None")
+    {
+>>>>>>> 2345712963138fc27dd82ba39e184bd851515968
       const food = await FoodItem.find({});
       res.send(food);
     } else if (SortBy === "Popularity") {
