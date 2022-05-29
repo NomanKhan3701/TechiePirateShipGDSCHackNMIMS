@@ -4,13 +4,12 @@ const {FoodItem}= require("../models/FoodItem")
 const AddOrder = async (req, res) => {
   try {
     const id = generateUniqueId({length:15});
-   console.log(items)
    
-    const { error } = validate({...req.body,OrderId:id,Status:"Ongoing"});
+    const { error } = validate({...req.body,"OrderId":id,Status:"Ongoing"});
     if (error)
       return res.status(400).send({ message: error.details[0].message });
     //   const order = await Order.findOne({ OrderId: req.body.OrderId,OrderedBy:req.body.OrderedBy,Status:"Ongoing" });
-    await new Order({...req.body,OrderId:id}).save();
+    await new Order({...req.body,OrderId:id,Status:"Ongoing",OrderDate:new Date}).save();
     res.status(201).send({ message: "Order Placed successfully" });
   } catch (error) {
     console.log(error);
@@ -19,14 +18,30 @@ const AddOrder = async (req, res) => {
 };
 const GetOrders = async (req, res) => {
   try {
+    if(req.query.SortBy=="All")
+    {
     const orders = await Order.find({});
     res.send(orders);
+    }
+    else if(req.query.SortBy=="Ongoing")
+    {
+      const orders=await Order.find({Status:"Ongoing"})
+      res.send(orders)
+    }
+    else if(req.query.SortBy=="Completed")
+    {
+      const orders = await Order.find({ Status: "Complete" });
+      res.send(orders);
+    }
+
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
 const SetOrder = async (req, res) => {
   try {
+    if(req.body.Type==="Complete")
+    {
     Order.updateOne(
       { OrderId: req.body.OrderId },
       { Status: "Complete" },
@@ -38,6 +53,22 @@ const SetOrder = async (req, res) => {
         }
       }
     );
+    }
+    else if(req.body.Type==="Paid")
+    {
+       Order.updateOne(
+         { OrderId: req.body.OrderId },
+         { Paid:true },
+         function (err, docs) {
+           if (err) {
+             res.send(err);
+           } else {
+             res.status(200).send(docs);
+           }
+         }
+       );
+    }
+
   } catch (error) {
     res.status(500).send({ message: "Internal Server Error" });
   }
@@ -76,4 +107,22 @@ const TerminateOrder = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-module.exports = { AddOrder, GetOrders, SetOrder, TerminateOrder, PayOrder };
+const MakePayment=async(req,res)=>{
+  try {
+    console.log(req.body.Items)
+   const Food= await FoodItem.find({ItemId: {
+      $in: req.body.Items,
+   }});
+   Prices = Food.map((food) => {
+     return food.Price;
+   });
+   res.status(200).send(Prices)
+   // req.Items ->ItemID
+   //req.Quantity ->Quantites
+   //req.Price ->Price 
+  } catch (error) {
+     res.status(500).send({ message: "Internal Server Error" });
+  }
+
+}
+module.exports = { AddOrder, GetOrders, SetOrder, TerminateOrder, PayOrder,MakePayment };
