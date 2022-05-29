@@ -36,10 +36,11 @@ const Menu = () => {
   };
 
   useEffect(() => {
-    axios.get(`${client_server_url}/FoodItem`,{params:{SortBy:"None"}})
+    axios
+      .get(`${client_server_url}/FoodItem`, { params: { SortBy: "None" } })
       .then((response) => {
         setLoading(false);
-        console.log(response)
+        console.log(response);
         setMenuData(response.data);
         console.log(response.data);
       })
@@ -63,8 +64,8 @@ const Menu = () => {
             id="Category"
             onChange={dropdownChange}
           >
-            {categoryData.map((data) => {
-              return <option>{data}</option>;
+            {categoryData.map((data, key) => {
+              return <option key={key}>{data}</option>;
             })}
           </select>
         </div>
@@ -75,8 +76,8 @@ const Menu = () => {
             id="Cuisine"
             onChange={dropdownChange}
           >
-            {cuisineData.map((data) => {
-              return <option>{data}</option>;
+            {cuisineData.map((data, key) => {
+              return <option key={key}>{data}</option>;
             })}
           </select>
         </div>
@@ -87,8 +88,8 @@ const Menu = () => {
             id="BestTimeToEat"
             onChange={dropdownChange}
           >
-            {bestTimeToEatData.map((data) => {
-              return <option>{data}</option>;
+            {bestTimeToEatData.map((data, key) => {
+              return <option key={key}>{data}</option>;
             })}
           </select>
         </div>
@@ -99,16 +100,17 @@ const Menu = () => {
             id="Availibility"
             onChange={dropdownChange}
           >
-            {availibilityData.map((data) => {
-              return <option>{data}</option>;
+            {availibilityData.map((data, key) => {
+              return <option key={key}>{data}</option>;
             })}
           </select>
         </div>
       </div>
       <div className="card-container">
-        {menuData.map((item) => {
+        {menuData.map((item, key) => {
           return (
             <Card
+              key={key}
               id={item.ItemId}
               img={item.Image}
               name={item.ItemName}
