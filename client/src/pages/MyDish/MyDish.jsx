@@ -9,7 +9,8 @@ const MyDish = () => {
   const [dish, setDish] = useState([]);
 
   useEffect(() => {
-    var cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    var cartItems = JSON.parse(localStorage.getItem("cart"));
+    if (cartItems === null) cartItems = [];
     setDish(cartItems);
     function checkCartData() {
       const item = JSON.parse(localStorage.getItem("cart"));
@@ -23,20 +24,28 @@ const MyDish = () => {
     };
   }, []);
 
+  const checkout = () => {
+    var cartItems = JSON.parse(localStorage.getItem("cart"));
+    if(cartItems === null) cartItems = [];
+    
+  }
+
   return (
     <div className="my-dish">
       <div className="card-container">
-        {dish.map((data, index) => {
-          return (
-            <CartCard
-              key={index}
-              img={food1}
-              name={data.name}
-              quantity={data.quantity}
-              setDish={setDish}
-            />
-          );
-        })}
+        {dish.length !== 0
+          ? dish.map((data, index) => {
+              return (
+                <CartCard
+                  key={index}
+                  img={food1}
+                  name={data.name}
+                  quantity={data.quantity}
+                  setDish={setDish}
+                />
+              );
+            })
+          : ""}
       </div>
       <div className="bill-container">
         <h1>Price</h1>
@@ -48,7 +57,7 @@ const MyDish = () => {
           <span>GST</span>
           <span>$10</span>
         </div>
-        <Link to="/checkout">
+        <Link to="/order" onClick={checkout}>
           <div className="btn">Checkout | $610</div>
         </Link>
       </div>
