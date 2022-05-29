@@ -66,35 +66,39 @@ export const CookingOrders = (props) => {
   }, []);
 
   return (
-    <div className="cooking-orders">
-      {order.map((ord, index) => {
-        return (
-          <div key={index} className="card">
-            <div className="top">
-              <div className="info">
-                <span className="order-number">{ord.OrderId} | </span>
-                <span className="date">{ord.OrderDate}</span>
+    <div className={`cooking-orders ${order.length === 0 ? 'active':''}`}>
+      {order.length !== 0 ? (
+        order.map((ord, index) => {
+          return (
+            <div key={index} className="card">
+              <div className="top">
+                <div className="info">
+                  <span className="order-number">{ord.OrderId} | </span>
+                  <span className="date">{ord.OrderDate}</span>
+                </div>
+                <div className="status">Cooking</div>
               </div>
-              <div className="status">Cooking</div>
+              <div className="middle">
+                <div className="left">
+                  {ord.Items.map((item, index) => {
+                    return (
+                      <div key={index} className="order-info">
+                        {item} x {ord.Quantity[index]},
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="right">
+                  <div className="price">Price - ${ord.TotalCost}</div>
+                </div>
+              </div>
+              <div className="bottom">View Details</div>
             </div>
-            <div className="middle">
-              <div className="left">
-                {ord.Items.map((item, index) => {
-                  return (
-                    <div key={index} className="order-info">
-                      {item} x {ord.Quantity[index]},
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="right">
-                <div className="price">Price - ${ord.TotalCost}</div>
-              </div>
-            </div>
-            <div className="bottom">View Details</div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <h1 className="nothing">Order Food</h1>
+      )}
     </div>
   );
 };
@@ -114,38 +118,42 @@ export const CompletedOrders = (props) => {
   }, []);
 
   return (
-    <div className="completed-orders">
-      {order.map((ord, index) => {
-        return (
-          <div key={index} className="card">
-            <div className="top">
-              <div className="info">
-                <span className="order-number">{ord.OrderId} | </span>
-                <span className="date">{ord.OrderDate}</span>
+    <div className={`completed-orders ${order.length === 0 ? 'active':''}`}>
+      {order.length != 0 ? (
+        order.map((ord, index) => {
+          return (
+            <div key={index} className="card">
+              <div className="top">
+                <div className="info">
+                  <span className="order-number">{ord.OrderId} | </span>
+                  <span className="date">{ord.OrderDate}</span>
+                </div>
+                <div className="status">Completed</div>
               </div>
-              <div className="status">Completed</div>
-            </div>
-            <div className="middle">
-              <div className="left">
-                {ord.Items.map((item, index) => {
-                  return (
-                    <div key={index} className="order-info">
-                      {item} x {ord.Quantity[index]},
-                    </div>
-                  );
-                })}
+              <div className="middle">
+                <div className="left">
+                  {ord.Items.map((item, index) => {
+                    return (
+                      <div key={index} className="order-info">
+                        {item} x {ord.Quantity[index]},
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="right">
+                  <div className="price">Price - ${ord.TotalCost}</div>
+                </div>
               </div>
-              <div className="right">
-                <div className="price">Price - ${ord.TotalCost}</div>
+              <div className="bottom">
+                <div className="btn1">View Details</div>
+                <div className="btn2">Pay</div>
               </div>
             </div>
-            <div className="bottom">
-              <div className="btn1">View Details</div>
-              <div className="btn2">Pay</div>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <h1 className="nothing">No Order Completed Yet</h1>
+      )}
     </div>
   );
 };
@@ -165,35 +173,39 @@ export const PreviousOrders = (props) => {
   }, []);
 
   return (
-    <div className="previous-orders">
-      {order.map((ord, index) => {
-        return (
-          <div key={index} className="card">
-            <div className="top">
-              <div className="info">
-                <span className="order-number">{ord.OrderId} | </span>
-                <span className="date">{ord.OrderDate}</span>
+    <div className={`previous-orders ${order.length === 0 ? 'active':''}`}>
+      {order.length != 0 ? (
+        order.map((ord, index) => {
+          return (
+            <div key={index} className="card">
+              <div className="top">
+                <div className="info">
+                  <span className="order-number">{ord.OrderId} | </span>
+                  <span className="date">{ord.OrderDate}</span>
+                </div>
+                <div className="status">Previous Order</div>
               </div>
-              <div className="status">Previous Order</div>
+              <div className="middle">
+                <div className="left">
+                  {ord.Items.map((item, index) => {
+                    return (
+                      <div key={index} className="order-info">
+                        {item} x {ord.Quantity[index]},
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="right">
+                  <div className="price">Price paid - ${ord.TotalCost}</div>
+                </div>
+              </div>
+              <div className="bottom">View Details</div>
             </div>
-            <div className="middle">
-              <div className="left">
-                {ord.Items.map((item, index) => {
-                  return (
-                    <div key={index} className="order-info">
-                      {item} x {ord.Quantity[index]},
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="right">
-                <div className="price">Price paid - ${ord.TotalCost}</div>
-              </div>
-            </div>
-            <div className="bottom">View Details</div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <h1 className="nothing">Nothing Ordered Yet</h1>
+      )}
     </div>
   );
 };

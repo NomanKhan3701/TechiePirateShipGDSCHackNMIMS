@@ -12,18 +12,19 @@ const Home = () => {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    getTrending();
+    axios
+      .get(`${client_server_url}/FoodItem`, {
+        params: { SortBy: "Popularity" },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setLoading(false);
+        setTrending(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, []);
-
-  const getTrending = async () => {
-    try {
-      const Data = await axios.get(`${client_server_url}/FoodItem`,{params:{SortBy:"Popularity"}});
-      console.log(Data)
-      setLoading(false)
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   if (isLoading) {
     return <FullScreenLoader />;
@@ -35,48 +36,19 @@ const Home = () => {
       <div className="trending-container">
         <h1>Trending</h1>
         <div className="trending">
-          <Card
-            img={food1}
-            name="Avacado egg"
-            desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-            price={200}
-            status="Available"
-          />
-          <Card
-            img={food1}
-            name="Avacado egg"
-            desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-            price={200}
-            status="Out Of Stock"
-          />
-          <Card
-            img={food1}
-            name="Avacado egg"
-            desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-            price={200}
-            status="Available"
-          />
-          <Card
-            img={food1}
-            name="Avacado egg"
-            desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-            price={200}
-            status="Out Of Stock"
-          />
-          <Card
-            img={food1}
-            name="Avacado egg"
-            desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-            price={200}
-            status="Out Of Stock"
-          />
-          <Card
-            img={food1}
-            name="Avacado egg"
-            desc=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quos quasi obcaecati facilis. Esse mollitia impedit accusamus maiores molestiae ab exercitationem. Natus quas illum eum eaque cupiditate asperiores beatae iste."
-            price={200}
-            status="Out Of Stock"
-          />
+          {trending.map((trend, index) => {
+            return (
+              <Card
+                key={index}
+                img={trend.Image}
+                name={trend.ItemId}
+                desc={trend.Description}
+                price={200}
+                status={trend.Availability ? `Available` : `Out Of Stock`}
+                like={trend.Likes.length}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
