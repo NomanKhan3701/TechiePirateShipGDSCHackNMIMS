@@ -13,13 +13,16 @@ const Navbar = () => {
   const [loggedIn, setloggedIn] = useState(false);
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
-    
-  if(localStorage.getItem("token"))
-    setloggedIn(true);
-    else
+    if (localStorage.getItem("token")) setloggedIn(true);
+    else setloggedIn(false);
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("token");
     setloggedIn(false);
-  }, [])
-  
+    navigate("/");
+  };
+
   const navLinkStyle = ({ isActive }) => {
     return {
       color: isActive ? "rgb(26, 26, 26)" : "rgb(115, 115, 115)",
@@ -55,9 +58,9 @@ const Navbar = () => {
         </div>
         {loggedIn ? (
           <div className="right-links flex-cc">
-            <Link to="/profile">
-              <img src="" alt="" />
-            </Link>
+            <div onClick={logout} className="link btn">
+              Logout
+            </div>
           </div>
         ) : (
           <div className="right-links flex-cc">

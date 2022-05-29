@@ -47,7 +47,7 @@ const GetSpecials = async (req, res) => {
     specials = specials.map((spec) => {
       return spec.SpecialItem;
     });
-    console.log(specials);
+    // console.log(specials);
     const Spcls = await FoodItem.find({
       ItemId: {
         $in: specials,

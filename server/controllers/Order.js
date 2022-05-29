@@ -107,4 +107,22 @@ const TerminateOrder = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
-module.exports = { AddOrder, GetOrders, SetOrder, TerminateOrder, PayOrder };
+const MakePayment=async(req,res)=>{
+  try {
+    console.log(req.body.Items)
+   const Food= await FoodItem.find({ItemId: {
+      $in: req.body.Items,
+   }});
+   Prices = Food.map((food) => {
+     return food.Price;
+   });
+   res.status(200).send(Prices)
+   // req.Items ->ItemID
+   //req.Quantity ->Quantites
+   //req.Price ->Price 
+  } catch (error) {
+     res.status(500).send({ message: "Internal Server Error" });
+  }
+
+}
+module.exports = { AddOrder, GetOrders, SetOrder, TerminateOrder, PayOrder,MakePayment };

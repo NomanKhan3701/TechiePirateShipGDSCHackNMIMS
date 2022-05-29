@@ -64,11 +64,10 @@ const Navbar = () => {
           </NavLink>
           <NavLink style={navLinkStyle} to="/mydish" className="link dish">
             My dish
-            <div className="count">6</div>
+            <div className="count">1</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/order" className="link order">
             Order
-            <div className="count">3</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/favourite" className="link">
             Favourite

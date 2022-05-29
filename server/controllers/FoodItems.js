@@ -19,10 +19,11 @@ const AddFoodItem = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
+
 const DeleteFoodItem = async (req, res) => {
   try {
     item = await FoodItem.findOne({ ItemId: req.body.ItemId });
-    if (item)
+    if (item) {
       FoodItem.findOneAndDelete(
         { ItemId: req.body.ItemId },
         function (err, docs) {
@@ -33,7 +34,15 @@ const DeleteFoodItem = async (req, res) => {
           }
         }
       );
-    else {
+      Client.updateOne(
+        {},
+        { $pull: { Favourites: req.body.ItemId } },
+        function (err, raw) {
+          if (err) res.send(err);
+          res.send(raw);
+        }
+      );
+    } else {
       res.status(404).send({ message: "Item Not Found" });
     }
   } catch (error) {
