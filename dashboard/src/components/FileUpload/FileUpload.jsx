@@ -4,7 +4,7 @@ import "./FileUpload.scss";
 const FileUpload = (props) => {
   const fileRef = useRef();
   const dragRef = useRef(null);
-  const [prevImg, setPrevImg] = useState();
+  const [prevImg, setprevImg] = useState();
   const [files, setfiles] = useState([]);
 
   const handleFileBtnClick = () => {
@@ -23,7 +23,8 @@ const FileUpload = (props) => {
     }
     var reader = new FileReader();
     reader.onload = function (e) {
-      setPrevImg(e.target.result);
+      setprevImg(e.target.result);
+      props.setPrevImg(e.target.result);
     };
     reader.readAsDataURL(e.target.files[0]);
   };

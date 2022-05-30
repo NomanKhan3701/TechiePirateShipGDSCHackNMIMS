@@ -1,22 +1,53 @@
-.menu {
+.menu-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 
-  .add-item {
-    margin: 20px 0px;
-    background: rgb(1, 17, 1);
-    color: white;
-    display: flex;
-    justify-content: center;
-    width: 300px;
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
     align-items: center;
-    padding: 15px 20px;
-    border-radius: 20px;
-    margin-left: auto;
-    margin-right: auto;
+  }
 
-    svg {
-      margin-left: 10px;
+  .filter-container {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+    width: max-content;
+    max-width: 240px;
+    border-radius: 20px;
+    height: max-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 30px;
+    margin: 30px 60px;
+
+    h1 {
+      margin-bottom: 25px;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h2 {
+        margin-bottom: 15px;
+      }
+      select {
+        cursor: pointer;
+        margin-bottom: 25px;
+        padding: 7px 15px;
+        width: 180px;
+        font-size: 16px;
+      }
+    }
+
+    li {
+      padding: 10px 20px;
+      border: 2px solid black;
+      cursor: pointer;
+      margin: 20px;
+      width: max-content;
     }
   }
 

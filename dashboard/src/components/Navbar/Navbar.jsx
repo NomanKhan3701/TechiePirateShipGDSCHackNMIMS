@@ -12,7 +12,14 @@ import { MdMenuBook } from "react-icons/md";
 const Navbar = () => {
   const [loggedIn, setloggedIn] = useState(false);
   const [toggle, setToggle] = useState(false);
-
+  useEffect(() => {
+    
+  if(localStorage.getItem("token"))
+    setloggedIn(true);
+    else
+    setloggedIn(false);
+  }, [])
+  
   const navLinkStyle = ({ isActive }) => {
     return {
       color: isActive ? "rgb(26, 26, 26)" : "rgb(115, 115, 115)",
@@ -38,11 +45,12 @@ const Navbar = () => {
           <NavLink style={navLinkStyle} to="/menu" className="link">
             Menu
           </NavLink>
-          <NavLink style={navLinkStyle} to="/order" className="link">
+          <NavLink style={navLinkStyle} to="/order" className="link order">
             Order
+            <div className="count">80</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/ingredients" className="link">
-            Ingredients
+            Inventory
           </NavLink>
         </div>
         {loggedIn ? (
@@ -53,12 +61,9 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="right-links flex-cc">
-            <NavLink style={navLinkStyle} to="/login" className="link">
+            <NavLink to="/login" className="link btn">
               Login
             </NavLink>
-            <Link to="/signup" className="link btn">
-              Signup
-            </Link>
           </div>
         )}
       </div>
@@ -80,9 +85,7 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <AiFillHome />
-              <div className="link-content">
-                <a>Home</a>
-              </div>
+              <div className="link-content">Home</div>
             </NavLink>
             <NavLink
               to="/menu"
@@ -90,9 +93,7 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <MdMenuBook />
-              <div className="link-content">
-                <a>Menu</a>
-              </div>
+              <div className="link-content">Menu</div>
             </NavLink>
             <NavLink
               to="/order"
@@ -100,9 +101,7 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <BsFillCartCheckFill />
-              <div className="link-content">
-                <a>Order</a>
-              </div>
+              <div className="link-content">Order</div>
             </NavLink>
             <NavLink
               to="/mydish"
@@ -110,24 +109,15 @@ const Navbar = () => {
               onClick={() => setToggle(false)}
             >
               <IoMdCart />
-              <div className="link-content">
-                <a>Ingredients</a>
-              </div>
+              <div className="link-content">Inventory</div>
             </NavLink>
             <NavLink
               to="/login"
-              className="link"
+              className="btn"
               onClick={() => setToggle(false)}
             >
               Login
             </NavLink>
-            <Link
-              to="/signup"
-              className="link btn"
-              onClick={() => setToggle(false)}
-            >
-              Signup
-            </Link>
           </div>
         </div>
       </div>

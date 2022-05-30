@@ -68,10 +68,49 @@
       font-size: 19px;
       font-weight: 700;
       color: rgb(115, 115, 115);
+      cursor: pointer;
 
       &:hover {
         color: rgb(26, 26, 26);
         text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    .dish {
+      position: relative;
+
+      .count {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
+        top: -9px;
+        right: -6px;
+        background: red;
+        padding: 3px;
+        color: white;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+      }
+    }
+
+    .order {
+      position: relative;
+
+      .count {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        top: -9px;
+        right: -6px;
+        background: red;
+        padding: 3px;
+        color: white;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
       }
     }
 
@@ -178,6 +217,7 @@
           border: 1px solid black;
           padding: 10px 25px;
           border-radius: 5px;
+          cursor: pointer;
 
           &:hover {
             background: rgb(224, 222, 222);

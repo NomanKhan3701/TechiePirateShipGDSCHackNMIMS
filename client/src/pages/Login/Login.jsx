@@ -5,17 +5,18 @@ import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
 import "./Login.scss";
 
+const client_server_url = import.meta.env.VITE_APP_CLIENT_SERVER_URL;
+
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
-    username: "",
+    MobileNumber: null,
     password: "",
   });
 
   if (isLoading) {
     return <FullScreenLoader />;
   }
-
   const onChange = (event) => {
     const { name, value } = event.target;
     setLoginData((prevData) => {
@@ -23,19 +24,27 @@ const Login = () => {
     });
   };
 
-  const submit = () => {
-    if (!(loginData.username && loginData.password)) {
+  const handleSubmit = async () => {
+    if (!(loginData.MobileNumber && loginData.password)) {
       toast.error("Fields cannot be empty.", { position: "top-center" });
     } else {
       setLoading(true);
-      axios
-        .post(``, {
-          username: loginData.username,
-          password: loginData.password,
-        })
-        .then((response) => {
-          setLoading(false);
-        });
+
+      try
+      {
+        const { data: res } = await axios.post(`${client_server_url}/Login/`, {
+        MobileNumber: loginData.MobileNumber,
+        password: loginData.password,
+      });
+      localStorage.setItem("token", res.data);
+      localStorage.setItem("User",{MobileNumber: loginData.MobileNumber,})
+      setLoading(false)
+    } catch(error)
+    {
+      console.log(error);
+    }
+      localStorage.setItem("token", res.data);
+      localStorage.setItem("User",)
     }
   };
   return (
@@ -45,9 +54,9 @@ const Login = () => {
         <h1>Login</h1>
         <input
           type="text"
-          name="username"
-          value={loginData.username}
-          placeholder="username"
+          name="MobileNumber"
+          value={loginData.MobileNumber}
+          placeholder="MobileNumber"
           onChange={onChange}
         ></input>
         <input
@@ -57,7 +66,14 @@ const Login = () => {
           placeholder="password"
           onChange={onChange}
         ></input>
-        <div className="btn" onClick={submit}>Submit</div>
+        <div
+          className="btn"
+          onClick={() => {
+            handleSubmit();
+          }}
+        >
+          Submit
+        </div>
       </div>
     </div>
   );

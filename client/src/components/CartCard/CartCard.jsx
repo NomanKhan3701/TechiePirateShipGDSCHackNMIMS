@@ -17,9 +17,9 @@ const CartCard = (props) => {
       </div>
       <div className="bottom">
         <div className="left flex-cc">
-          <RiAddLine className="i" />
+          <RiSubtractLine className="i" />
           <span>4</span>
-          <RiSubtractLine />
+          <RiAddLine />
         </div>
         <div className="right">
           Delete

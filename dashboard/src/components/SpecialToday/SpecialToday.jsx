@@ -7,6 +7,8 @@ import "swiper/css/navigation";
 import { AiFillDelete } from "react-icons/ai";
 import { CgArrowsExchange } from "react-icons/cg";
 import { Autoplay, Pagination, Navigation } from "swiper";
+import { Link } from "react-router-dom";
+import { IoMdAdd } from "react-icons/io";
 import food1 from "../../assets/food1.jpg";
 import food2 from "../../assets/food2.jpg";
 import food3 from "../../assets/food3.jpg";
@@ -37,10 +39,6 @@ const SpecialToday = () => {
                 Delete
                 <AiFillDelete />
               </div>
-              <div className="btn">
-                Change
-                <CgArrowsExchange />
-              </div>
             </div>
           </div>
         </SwiperSlide>
@@ -52,10 +50,6 @@ const SpecialToday = () => {
               <div className="btn">
                 Delete
                 <AiFillDelete />
-              </div>
-              <div className="btn">
-                Change
-                <CgArrowsExchange />
               </div>
             </div>
           </div>
@@ -69,10 +63,16 @@ const SpecialToday = () => {
                 Delete
                 <AiFillDelete />
               </div>
-              <div className="btn">
-                Change
-                <CgArrowsExchange />
-              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="info">
+            <div className="title">Add Slides To Special Today</div>
+            <div className="utilities">
+              <Link to="/additemtospecial" className="add-special">
+                Add items to Special <IoMdAdd />
+              </Link>
             </div>
           </div>
         </SwiperSlide>

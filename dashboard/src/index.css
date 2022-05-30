@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body {
+  padding-top: 90px;
+} */
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.i {
+  cursor: pointer;
+}
+
+.flex-cc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-cc {
+  display: grid;
+  place-items: center;
+}
