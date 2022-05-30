@@ -112,6 +112,11 @@
       justify-content: center;
       align-items: center;
 
+      &.active {
+        margin: auto;
+        width: max-content;
+      }
+
       .card {
         height: max-content;
         width: 400px;
@@ -188,6 +193,11 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+
+      &.active {
+        margin: auto;
+        width: max-content;
+      }
 
       .card {
         height: max-content;
@@ -287,6 +297,11 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+
+      &.active {
+        width: max-content;
+        margin: auto;
+      }
 
       .card {
         height: max-content;

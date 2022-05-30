@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router";
 import axios from "axios";
 import FullScreenLoader from "./FullScreenLoader";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,9 +11,10 @@ const client_server_url = import.meta.env.VITE_APP_CLIENT_SERVER_URL;
 const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [loginData, setLoginData] = useState({
-    MobileNumber: null,
+    MobileNumber: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <FullScreenLoader />;
@@ -30,23 +32,24 @@ const Login = () => {
     } else {
       setLoading(true);
 
-      try
-      {
-        const { data: res } = await axios.post(`${client_server_url}/Login/`, {
-        MobileNumber: loginData.MobileNumber,
-        password: loginData.password,
-      });
-      localStorage.setItem("token", res.data);
-      localStorage.setItem("User",{MobileNumber: loginData.MobileNumber,})
-      setLoading(false)
-    } catch(error)
-    {
-      console.log(error);
-    }
-      localStorage.setItem("token", res.data);
-      localStorage.setItem("User",)
+      let res;
+      try {
+        res = await axios.post(`${client_server_url}/Login/`, {
+          MobileNumber: loginData.MobileNumber,
+          password: loginData.password,
+        });
+        localStorage.setItem("token", res.data);
+        localStorage.setItem("User", loginData.MobileNumber);
+        setLoading(false);
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+      navigate("/");
+      window.location.reload(false);
     }
   };
+
   return (
     <div className="login-container">
       <ToastContainer></ToastContainer>

@@ -5,21 +5,37 @@ import { BsSearch } from "react-icons/bs";
 import logo from "../../assets/logo.png";
 import { BiX } from "react-icons/bi";
 import { AiOutlineAlignLeft, AiFillHome, AiTwotoneHeart } from "react-icons/ai";
-
+import { useNavigate } from "react-router";
 import { IoMdCart } from "react-icons/io";
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { MdMenuBook } from "react-icons/md";
 
 const Navbar = () => {
-  useEffect(() => {
-    if(localStorage.getItem("token"))
-    setloggedIn(true);
-    else
-    setloggedIn(false);
-  }, [])
-  
   const [loggedIn, setloggedIn] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) setloggedIn(true);
+    else setloggedIn(false);
+
+    function checkLoggedInData() {
+      const item = JSON.parse(localStorage.getItem("token"));
+      if (item) {
+        setloggedIn(true);
+      }
+    }
+    window.addEventListener("token", checkLoggedInData);
+    return () => {
+      window.removeEventListener("token", checkLoggedInData);
+    };
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setloggedIn(false);
+    navigate("/");
+  };
 
   const navLinkStyle = ({ isActive }) => {
     return {
@@ -48,11 +64,10 @@ const Navbar = () => {
           </NavLink>
           <NavLink style={navLinkStyle} to="/mydish" className="link dish">
             My dish
-            <div className="count">6</div>
+            <div className="count">1</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/order" className="link order">
             Order
-            <div className="count">3</div>
           </NavLink>
           <NavLink style={navLinkStyle} to="/favourite" className="link">
             Favourite
@@ -60,9 +75,9 @@ const Navbar = () => {
         </div>
         {loggedIn ? (
           <div className="right-links flex-cc">
-            <Link to="/profile">
-              <img src="" alt="" />
-            </Link>
+            <div onClick={logout} className="link btn">
+              Logout
+            </div>
           </div>
         ) : (
           <div className="right-links flex-cc">

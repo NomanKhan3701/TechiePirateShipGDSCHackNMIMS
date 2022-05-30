@@ -19,6 +19,7 @@ const AddFoodItem = async (req, res) => {
     res.status(500).send({ message: "Internal Server Error" });
   }
 };
+
 const DeleteFoodItem = async (req, res) => {
   try {
     item = await FoodItem.findOne({ ItemId: req.body.ItemId });

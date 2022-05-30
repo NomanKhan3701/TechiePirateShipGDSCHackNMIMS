@@ -9,15 +9,17 @@ const {
   AdminLogin,
   TestAdmin,
 } = require("../controllers/AdminData");
-const { AddSpecial, RemoveSpecial, GetSpecials } = require("../controllers/Specials");
+const {
+  AddSpecial,
+  RemoveSpecial,
+  GetSpecials,
+} = require("../controllers/Specials");
 const {
   AddIngredient,
   RemoveIngredient,
   GetIngredients,
 } = require("../controllers/Inventory");
-const {
-  SetOrder
-}=require("../controllers/Order");
+const { SetOrder } = require("../controllers/Order");
 
 router.post("/Test/", TestAdmin);
 router.get("/Test/", (req, res) => {});
@@ -26,9 +28,10 @@ router.post("/Login", AdminLogin);
 router.post("/FoodItem", AddFoodItem);
 router.get("/FoodItem", GetFoodItems);
 router.delete("/FoodItem", DeleteFoodItem);
-router.get("/Specials",GetSpecials)
+router.get("/Specials", GetSpecials);
 router.post("/Specials", AddSpecial);
 router.delete("/Specials", RemoveSpecial);
+router.get("/Specials", GetSpecials);
 router.post("/Inventory", AddIngredient);
 router.delete("/Inventory", RemoveIngredient);
 router.get("/Inventory", GetIngredients);
